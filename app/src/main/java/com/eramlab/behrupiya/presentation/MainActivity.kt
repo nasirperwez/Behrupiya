@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import com.eramlab.behrupiya.presentation.ui.screens.generate.GenerateImageScreen
+import com.eramlab.behrupiya.presentation.ui.screens.homescreen.HomeScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -18,6 +19,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+//                    HomeScreen()
                     GenerateImageScreen()
 //                    GenerateImageScreennasir()
                 }
