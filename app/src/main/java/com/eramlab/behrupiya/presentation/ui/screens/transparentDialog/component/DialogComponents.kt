@@ -21,14 +21,14 @@ import androidx.compose.ui.unit.sp
 import com.eramlab.behrupiya.R
 
 @Composable
-fun ImagePreviewCard(modifier: Modifier = Modifier ,bitmap: Bitmap?) {
+fun ImagePreviewCard(modifier: Modifier = Modifier, bitmap: Bitmap?) {
     Card(
         modifier = modifier
             .padding(50.dp)
             .fillMaxWidth()
             .fillMaxHeight()
             .shadow(elevation = 0.dp, shape = RoundedCornerShape(15.dp))
-            ) {
+    ) {
         bitmap?.let { imageBitmap ->
             Image(
                 bitmap = imageBitmap.asImageBitmap(),
@@ -42,7 +42,7 @@ fun ImagePreviewCard(modifier: Modifier = Modifier ,bitmap: Bitmap?) {
 }
 
 @Composable
-fun ActionButton(modifier: Modifier = Modifier ,text: String, iconResId: Int, onClick: () -> Unit) {
+fun ActionButton(modifier: Modifier = Modifier, text: String, iconResId: Int, onClick: () -> Unit) {
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -61,8 +61,10 @@ fun ActionButton(modifier: Modifier = Modifier ,text: String, iconResId: Int, on
             Image(
                 modifier = modifier.padding(15.dp),
                 painter = painterResource(id = iconResId),
-                contentDescription = null        )
-            Text(modifier = modifier.padding(5.dp),
+                contentDescription = null
+            )
+            Text(
+                modifier = modifier.padding(5.dp),
                 text = text,
                 fontSize = 25.sp,
                 color = Color.Blue
