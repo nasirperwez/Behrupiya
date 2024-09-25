@@ -1,4 +1,4 @@
-package com.eramlab.behrupiya.presentation.ui.screen.homescreen
+package com.eramlab.behrupiya.presentation.ui.screens.homescreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
@@ -6,9 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.eramlab.behrupiya.presentation.viewmodel.HomeViewModel
-import com.eramlab.behrupiya.presentation.ui.screen.homescreen.component.FeaturedContent
-import com.eramlab.behrupiya.presentation.ui.screen.homescreen.component.SearchAndFilter
-import com.eramlab.behrupiya.presentation.ui.screen.homescreen.component.TopBar
+import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.FeaturedContent
+import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.SearchAndFilter
+import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.TopBar
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = viewModel()) {

@@ -1,10 +1,13 @@
-package com.eramlab.behrupiya.presentation.ui.screen.generatescreennasir.compunent
+package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -20,9 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 
 
 @Composable
@@ -32,21 +33,23 @@ fun GenerateTextSelect() {
     val options = listOf("Option 1", "Option 2", "Option 3")
     var selectedCulture by remember { mutableStateOf("") }
 
-    val countryIcon = if (expandedCulture) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown
+    val countryIcon =
+        if (expandedCulture) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown
 
     Box(
         modifier = Modifier
-
-            .padding(8.dp)
-
+            .fillMaxWidth(0.40f)
+            .aspectRatio(4f) // This creates a fixed aspect ratio, replacing the need for padding
             .clickable { expandedCulture = !expandedCulture }
             .background(color = Color.Transparent)
         //.border(BorderStroke(1.dp, Color.Gray), shape = RoundedCornerShape(4.dp))
     ) {
         Row(
             modifier = Modifier
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .fillMaxHeight(),
+                    verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = selectedCulture,
@@ -57,7 +60,7 @@ fun GenerateTextSelect() {
             Icon(
                 imageVector = countryIcon,
                 contentDescription = null,
-                tint = Color.Green // Set icon color to white
+                tint = Color.White // Set icon color to white
             )
         }
         DropdownMenu(
@@ -76,3 +79,6 @@ fun GenerateTextSelect() {
         }
     }
 }
+
+
+

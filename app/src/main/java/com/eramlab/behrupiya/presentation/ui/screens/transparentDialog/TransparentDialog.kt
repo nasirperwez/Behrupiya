@@ -1,4 +1,4 @@
-package com.eramlab.behrupiya.presentation.ui.screen.transparentDialog
+package com.eramlab.behrupiya.presentation.ui.screens.transparentDialog
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -19,9 +19,9 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
 import com.eramlab.behrupiya.R
-import com.eramlab.behrupiya.presentation.ui.screen.transparentDialog.component.ActionButton
-import com.eramlab.behrupiya.presentation.ui.screen.transparentDialog.component.CloseButton
-import com.eramlab.behrupiya.presentation.ui.screen.transparentDialog.component.ImagePreviewCard
+import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component.ActionButton
+import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component.CloseButton
+import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component.ImagePreviewCard
 import com.eramlab.behrupiya.utils.rememberCameraLauncher
 import com.eramlab.behrupiya.utils.rememberGalleryLauncher
 import com.eramlab.behrupiya.utils.rememberPermissionLauncher

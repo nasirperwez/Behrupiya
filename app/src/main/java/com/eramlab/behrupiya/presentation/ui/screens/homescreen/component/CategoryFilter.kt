@@ -1,4 +1,4 @@
-package com.eramlab.behrupiya.presentation.ui.screen.homescreen.component
+package com.eramlab.behrupiya.presentation.ui.screens.homescreen.component
 
 import androidx.compose.foundation.layout.*
 //import androidx.compose.foundation.layout.FlowRowScopeInstance.weight

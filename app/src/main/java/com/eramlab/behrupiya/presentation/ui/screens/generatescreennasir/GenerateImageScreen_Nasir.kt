@@ -1,4 +1,4 @@
-package com.eramlab.behrupiya.presentation.ui.screen.generatescreennasir
+package com.eramlab.behrupiya.presentation.ui.screens.generatescreennasir
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -10,7 +10,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.eramlab.behrupiya.R
-import com.eramlab.behrupiya.presentation.ui.screen.generatescreennasir.compunent.GenerateTextSelect
+import com.eramlab.behrupiya.presentation.ui.screens.generatescreennasir.compunent.GenerateTextSelect
 
 @Composable
 fun GenerateImageScreennasir(

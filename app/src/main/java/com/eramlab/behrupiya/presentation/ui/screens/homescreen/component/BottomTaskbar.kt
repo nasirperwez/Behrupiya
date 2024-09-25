@@ -1,4 +1,4 @@
-package com.eramlab.behrupiya.presentation.ui.screen.homescreen.component
+package com.eramlab.behrupiya.presentation.ui.screens.homescreen.component
 
 
 import androidx.compose.foundation.background
@@ -11,7 +11,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.eramlab.behrupiya.R
-import com.eramlab.behrupiya.presentation.ui.screen.transparentDialog.TransparentDialog
+import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.TransparentDialog
 
 @Composable
 fun BottomTaskbar(modifier: Modifier = Modifier) {

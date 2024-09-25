@@ -1,4 +1,4 @@
-package com.eramlab.behrupiya.presentation.ui.screen.transparentDialog.component
+package com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.Image

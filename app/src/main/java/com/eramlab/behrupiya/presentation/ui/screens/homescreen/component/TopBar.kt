@@ -1,4 +1,4 @@
-package com.eramlab.behrupiya.presentation.ui.screen.homescreen.component
+package com.eramlab.behrupiya.presentation.ui.screens.homescreen.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*

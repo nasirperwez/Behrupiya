@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "JsonList"
+rootProject.name = "Behrupiya"
 include(":app")
  
