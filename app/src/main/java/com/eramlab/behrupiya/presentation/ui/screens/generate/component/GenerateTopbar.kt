@@ -8,64 +8,47 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.sp
-import com.eramlab.behrupiya.R
-import androidx.compose.material3.IconButton
-import androidx.compose.foundation.Image
-import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Arrangement
+import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateTopbarComponent.backButton
+import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateTopbarComponent.categoryFilters
+import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateTopbarComponent.imageIcon
 
 
 @Composable
 fun GenerateTopbar(modifier: Modifier = Modifier) {
     Box(
-        Modifier
+        modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.10f)
+            .fillMaxHeight()
             .background(color = Color(0xC31E1EA7))
     ) {
         Row(
-           Modifier
+            Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(
-                onClick = { },
+            backButton(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .fillMaxHeight()
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.back_icn),
-                    contentDescription = null
-                )
-            }
+                    .weight(0.2f)
+            )
 
-            Row(
-               Modifier,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "Sikh ",
-                    fontSize = 20.sp,
-                    color = Color.White
-                )
-                GenerateTextSelect()
-            }
-
-            IconButton(
-                onClick = { },
+            categoryFilters(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .fillMaxHeight()
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.gallery_icn),
-                    contentDescription = null
-                )
-            }
+                    .weight(0.7f)
+            )
+            imageIcon(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .weight(0.1f)
+            )
         }
     }
 }

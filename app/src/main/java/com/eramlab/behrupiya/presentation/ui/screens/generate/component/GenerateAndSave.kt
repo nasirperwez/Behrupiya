@@ -2,8 +2,8 @@ package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,11 +25,28 @@ fun GenerateAndSave(modifier: Modifier = Modifier) {
 //        verticalArrangement = Arrangement.SpaceBetween
 
     ) {
-        GenerateTopbar()
-        Spacer(modifier = Modifier.height(16.dp))
-        GenerateImage()
-       Spacer(modifier = Modifier.height(20.dp))
-        GenerateAndsave()
+
+
+        GenerateTopbar(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .weight(0.1f)
+        )
+
+        GenerateImage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .weight(0.65f)
+        )
+
+        GenerateAndsave(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .weight(0.25f)
+        )
 
     }
 

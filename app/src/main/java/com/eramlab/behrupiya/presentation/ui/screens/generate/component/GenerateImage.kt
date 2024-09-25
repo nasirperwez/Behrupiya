@@ -21,8 +21,8 @@ import com.eramlab.behrupiya.R
 @Composable
 fun GenerateImage(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
-            .fillMaxWidth().fillMaxHeight(0.70f).background(color = Color.Yellow),
+        modifier = modifier
+            .fillMaxWidth().fillMaxHeight().background(color = Color.Yellow),
         contentAlignment = Alignment.Center
     ) {
 
