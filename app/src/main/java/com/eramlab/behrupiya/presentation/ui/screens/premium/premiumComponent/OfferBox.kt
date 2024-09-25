@@ -31,8 +31,11 @@ fun OfferBox(
     yearAccess: String,
     fullPrice: String,
     year: String,
-    onClick: () -> Unit
-) {
+    isFirstBox: Boolean = false,
+    isSecondBox: Boolean = false,
+    onClick: () -> Unit,
+
+    ) {
     Box(
         modifier = Modifier
             .width(150.dp)
@@ -42,23 +45,40 @@ fun OfferBox(
             .clickable { onClick() }
     ) {
         Image(
-            painter = painterResource(id = if (selected) R.drawable.button_s_with_tag else R.drawable.button1),
+            painter = painterResource(
+                id = when {
+                    isFirstBox && selected -> R.drawable.button_s_with_tag
+                    isSecondBox && selected -> R.drawable.button_s
+                    else -> R.drawable.button1
+                }
+            ),
             contentDescription = null,
             modifier = Modifier.fillMaxSize()
         )
-
+        if (isFirstBox && selected) {
+            Text(
+                text = "Best Offer", // Your custom text
+                color = Color.White,
+                fontSize = 10.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+            )
+        }
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = price, color = Color.White, fontSize = 25.sp, fontWeight = FontWeight.Bold)
+            Text(text = price, color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold)
             Text(text = period, color = Color.White)
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(18.dp))
             Text(text = yearAccess, color = Color(0xFF77B4D8), fontSize = 15.sp)
             Text(text = fullPrice, color = Color.White)
             Text(text = year, color = Color.White)
+
+
         }
     }
 }
