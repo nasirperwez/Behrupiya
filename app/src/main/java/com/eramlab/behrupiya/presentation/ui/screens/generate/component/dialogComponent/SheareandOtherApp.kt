@@ -2,6 +2,7 @@ package com.eramlab.behrupiya.presentation.ui.screens.generate.component.dialogC
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,13 +17,12 @@ import com.eramlab.behrupiya.R
 fun SheareandOtherApp(modifier: Modifier) {
 
     Row(
-        modifier = modifier.fillMaxSize()
-        //.align(Alignment.CenterHorizontally)
+        modifier = modifier.fillMaxSize(),
+                horizontalArrangement = Arrangement.Center
     ) {
         Image(painter = painterResource(id = R.drawable.social_whasapp),
             contentDescription = null,
             modifier = Modifier
-                .padding(start = 20.dp)
                 .size(40.dp)
                 .clickable { }
 
