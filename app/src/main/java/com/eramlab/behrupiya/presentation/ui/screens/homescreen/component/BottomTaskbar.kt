@@ -10,11 +10,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.TransparentDialog
 
 @Composable
-fun BottomTaskbar(modifier: Modifier = Modifier) {
+fun BottomTaskbar(
+    sharedViewModel: SharedViewModel,
+    navController: NavController, modifier: Modifier = Modifier) {
     var showDialog by remember { mutableStateOf(false) }
     Box(
         modifier = modifier
@@ -42,7 +46,9 @@ fun BottomTaskbar(modifier: Modifier = Modifier) {
                 onClick = { /* Handle settings click */ }
             )
             if (showDialog) {
-                TransparentDialog(onDismiss = { showDialog = false })
+                TransparentDialog(
+                    sharedViewModel ,
+                    navController ,onDismiss = { showDialog = false })
             }
         }
     }

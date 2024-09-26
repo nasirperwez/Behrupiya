@@ -27,7 +27,12 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun GenerateTextSelect() {
+fun GenerateTextSelect(
+    categories: List<String>,
+    selectedCategory: String,
+    onCategorySelected: (String) -> Unit,
+
+) {
     var expandedCulture by remember { mutableStateOf(false) }
 
     val options = listOf("Option 1", "Option 2", "Option 3")

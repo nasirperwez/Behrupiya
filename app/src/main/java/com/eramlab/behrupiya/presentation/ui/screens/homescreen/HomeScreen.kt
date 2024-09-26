@@ -5,20 +5,26 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.viewmodel.HomeViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.FeaturedContent
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.SearchAndFilter
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.TopBar
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
-    val categories by viewModel.categories.collectAsState()
-    val selectedCategory by viewModel.selectedCategory.collectAsState()
-    val items by viewModel.items.collectAsState()
-    val isLoading by viewModel.isLoading.collectAsState()
+fun HomeScreen(
+    sharedViewModel: SharedViewModel,
+    navController: NavController,
+    homeViewModel: HomeViewModel) {
+
+    val categories by homeViewModel.categories.collectAsState()
+    val selectedCategory by homeViewModel.selectedCategory.collectAsState()
+    val items by homeViewModel.items.collectAsState()
+    val isLoading by homeViewModel.isLoading.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.fetchData()
+        homeViewModel.fetchData()
     }
 
     Column(
@@ -39,9 +45,11 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 .weight(.25f)
         )
         SearchAndFilter(
+            sharedViewModel,
+            navController,
             categories = categories,
             selectedCategory = selectedCategory,
-            onCategorySelected = { viewModel.selectCategory(it) },
+            onCategorySelected = { homeViewModel.selectCategory(it) },
             items = items,
             isLoading = isLoading,
             modifier = Modifier

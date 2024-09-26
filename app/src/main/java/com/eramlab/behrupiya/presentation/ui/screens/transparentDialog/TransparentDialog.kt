@@ -18,7 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component.ActionButton
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component.CloseButton
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component.ImagePreviewCard
@@ -27,12 +29,14 @@ import com.eramlab.behrupiya.utils.rememberGalleryLauncher
 import com.eramlab.behrupiya.utils.rememberPermissionLauncher
 
 @Composable
-fun TransparentDialog(onDismiss: () -> Unit) {
+fun TransparentDialog(
+    sharedViewModel: SharedViewModel,
+    navController: NavController,  onDismiss: () -> Unit) {
     var bitmap by remember { mutableStateOf<Bitmap?>(null) }
     val context = LocalContext.current
 
-    val cameraLauncher = rememberCameraLauncher { bitmap = it }
-    val permissionLauncher = rememberPermissionLauncher(context, cameraLauncher)
+    val cameraLauncher = rememberCameraLauncher(sharedViewModel,navController) { bitmap = it }
+    val permissionLauncher = rememberPermissionLauncher(sharedViewModel,context, cameraLauncher)
     val galleryLauncher = rememberGalleryLauncher(context) { bitmap = it }
 
     Dialog(
