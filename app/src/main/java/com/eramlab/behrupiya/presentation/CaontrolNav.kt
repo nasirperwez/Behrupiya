@@ -54,6 +54,12 @@ fun ControlNav()
                 generateImageViewModel.setLoading(isLoading)
             }
         }
+
+        launch {
+            homeViewModel.categoryData.collect { categoryData ->
+                generateImageViewModel.setCategoryData(categoryData)
+            }
+        }
     }
 
     // Scaffold with NavHost
