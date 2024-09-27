@@ -11,10 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.presentation.SharedViewModel
 
 @Composable
 fun GenerateAndSave(
+
     categories: List<String>,
     selectedCategory: String,
     onCategorySelected: (String) -> Unit,
@@ -37,7 +39,7 @@ fun GenerateAndSave(
         GenerateTopbar(
             categories = categories,
             selectedCategory = selectedCategory,
-            onCategorySelected = {  },
+            onCategorySelected = onCategorySelected,
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()

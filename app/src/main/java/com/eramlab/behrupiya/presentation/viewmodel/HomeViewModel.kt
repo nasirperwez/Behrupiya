@@ -25,6 +25,7 @@ class HomeViewModel : ViewModel() {
 
     // Store the entire CategoryData list
     private val _categoryData = MutableStateFlow<List<CategoryData>>(emptyList())
+    val categoryData: StateFlow<List<CategoryData>> = _categoryData
 
     private val networkLayer = NetworkLayer()
 
@@ -61,6 +62,9 @@ class HomeViewModel : ViewModel() {
         super.onCleared()
         networkLayer.close()
     }
+
+
+
 }
 
 

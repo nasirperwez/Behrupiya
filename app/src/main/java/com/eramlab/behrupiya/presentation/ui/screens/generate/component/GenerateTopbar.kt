@@ -44,7 +44,7 @@ fun GenerateTopbar(
             categoryFilters(
                 categories = categories,
                 selectedCategory = selectedCategory,
-                onCategorySelected = {  },
+                onCategorySelected = onCategorySelected,
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()

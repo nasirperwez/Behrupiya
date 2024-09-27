@@ -28,7 +28,7 @@ fun categoryFilters(
         GenerateTextSelect(
             categories = categories,
             selectedCategory = selectedCategory,
-            onCategorySelected = {  },
+            onCategorySelected = onCategorySelected,
 
         )
     }
