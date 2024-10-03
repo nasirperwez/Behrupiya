@@ -1,11 +1,8 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,10 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.eramlab.behrupiya.data.model.GenCard
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.data.model.genImg
 
@@ -53,15 +48,15 @@ fun CardItem(item: Item) {
                     .shadow(elevation = 0.dp, shape = RoundedCornerShape(20.dp)),
 
                 ) {
-                AsyncImage(
-                    model = item.imageUrl,
-                    contentDescription = item.title,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1f),
-                    contentScale = ContentScale.Crop
-
-                )
+//                AsyncImage(
+//                    model = item.output_image,
+//                    contentDescription = item.name,
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .aspectRatio(1f),
+//                    contentScale = ContentScale.Crop
+//
+//                )
             }
         }
 
@@ -70,7 +65,7 @@ fun CardItem(item: Item) {
                 .width(100.dp)
         ) {
             Text(
-                text = item.title,
+                text = item.name,
                 modifier = Modifier.align(Alignment.Center),
                 color = Color.White
             )

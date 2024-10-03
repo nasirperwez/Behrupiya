@@ -37,6 +37,7 @@ fun GenerateImageScreen(
     )
     {
         GenerateAndSave(
+            generateImageViewModel,
             categories = categories,
             selectedCategory = selectedCategory,
             onCategorySelected = {  generateImageViewModel.setSelectedCategory(it)},

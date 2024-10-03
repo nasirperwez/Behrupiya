@@ -11,6 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.eramlab.behrupiya.data.model.Item
+import com.eramlab.behrupiya.utils.AppConstants
 
 @Composable
 fun ItemGrid(modifier: Modifier = Modifier,items: List<Item>) {
@@ -39,15 +40,16 @@ fun ItemCard(modifier: Modifier = Modifier,item: Item) {
     ) {
         Column {
             AsyncImage(
-                model = item.imageUrl,
-                contentDescription = item.title,
+
+                model = AppConstants.IMG_BASE_ENDPOINT + item.output_image,
+                contentDescription = item.name,
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1f),
                 contentScale = ContentScale.Crop
             )
             Text(
-                text = item.title,
+                text = item.name,
                 modifier = Modifier.padding(8.dp)
             )
         }

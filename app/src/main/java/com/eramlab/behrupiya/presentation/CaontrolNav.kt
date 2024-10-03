@@ -99,8 +99,10 @@ fun ControlNav()
 class SharedViewModel : ViewModel() {
     private val _bitmap = mutableStateOf<Bitmap?>(null)
     val bitmap: State<Bitmap?> = _bitmap
+    var bitmap_set= _bitmap.value
 
     fun setBitmap(newBitmap: Bitmap) {
         _bitmap.value = newBitmap
+        bitmap_set = newBitmap
     }
 }
