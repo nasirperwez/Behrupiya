@@ -9,10 +9,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.eramlab.behrupiya.presentation.SharedViewModel
+import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
 
 @Composable
-fun GenerateAndSaveBox() {
+fun GenerateAndSaveBox(
+    sharedViewModel: SharedViewModel,
+    generateImageViewModel: GenerateImageViewModel,
+) {
 
     Box(
         Modifier
@@ -27,7 +32,9 @@ fun GenerateAndSaveBox() {
 
 
     ){
-        GenerateButton()
+        GenerateButton(
+            sharedViewModel,
+            generateImageViewModel)
     }
 }
 

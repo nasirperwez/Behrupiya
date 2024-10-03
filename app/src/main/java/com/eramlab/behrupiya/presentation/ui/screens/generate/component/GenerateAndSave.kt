@@ -1,5 +1,6 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
+import android.graphics.Bitmap
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -10,9 +11,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.eramlab.behrupiya.data.model.Item
+import com.eramlab.behrupiya.presentation.SharedViewModel
+import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
 @Composable
-fun GenerateAndSave(modifier: Modifier = Modifier) {
+fun GenerateAndSave(
+    generateImageViewModel: GenerateImageViewModel,
+    categories: List<String>,
+    selectedCategory: String,
+    onCategorySelected: (String) -> Unit,
+    sharedViewModel: SharedViewModel,
+    modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .clip(
@@ -28,6 +38,9 @@ fun GenerateAndSave(modifier: Modifier = Modifier) {
 
 
         GenerateTopbar(
+            categories = categories,
+            selectedCategory = selectedCategory,
+            onCategorySelected = onCategorySelected,
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
@@ -35,13 +48,18 @@ fun GenerateAndSave(modifier: Modifier = Modifier) {
         )
 
         GenerateImage(
+
+            sharedViewModel,
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
-                .weight(0.65f)
+                .weight(0.65f),
+
         )
 
         GenerateAndsave(
+            sharedViewModel,
+            generateImageViewModel,
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()

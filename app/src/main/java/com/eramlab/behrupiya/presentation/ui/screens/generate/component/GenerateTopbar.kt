@@ -10,13 +10,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Arrangement
-import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateTopbarComponent.backButton
-import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateTopbarComponent.categoryFilters
-import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateTopbarComponent.imageIcon
+import com.eramlab.behrupiya.presentation.ui.screens.generate.component.generateyopbarcomponent.backButton
+import com.eramlab.behrupiya.presentation.ui.screens.generate.component.generateyopbarcomponent.categoryFilters
+import com.eramlab.behrupiya.presentation.ui.screens.generate.component.generateyopbarcomponent.imageIcon
 
 
 @Composable
-fun GenerateTopbar(modifier: Modifier = Modifier) {
+fun GenerateTopbar(
+    categories: List<String>,
+    selectedCategory: String,
+    onCategorySelected: (String) -> Unit,
+    modifier: Modifier = Modifier) {
     Box(
         modifier
             .fillMaxWidth()
@@ -38,6 +42,9 @@ fun GenerateTopbar(modifier: Modifier = Modifier) {
             )
 
             categoryFilters(
+                categories = categories,
+                selectedCategory = selectedCategory,
+                onCategorySelected = onCategorySelected,
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()

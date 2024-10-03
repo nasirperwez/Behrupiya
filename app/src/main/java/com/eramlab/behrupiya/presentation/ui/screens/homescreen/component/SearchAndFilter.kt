@@ -10,16 +10,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.eramlab.behrupiya.data.model.Item
+import com.eramlab.behrupiya.presentation.SharedViewModel
 
 @Composable
-fun SearchAndFilter(
-    categories: List<String>,
-    selectedCategory: String,
-    onCategorySelected: (String) -> Unit,
-    items: List<Item>,
-    isLoading: Boolean,
-    modifier: Modifier = Modifier
+fun SearchAndFilter(sharedViewModel: SharedViewModel, navController: NavController,
+                    categories: List<String>,
+                    selectedCategory: String,
+                    onCategorySelected: (String) -> Unit,
+                    items: List<Item>,
+                    isLoading: Boolean,
+                    modifier: Modifier = Modifier
 ) {
     Box(modifier=modifier.fillMaxSize())
     {
@@ -56,6 +58,8 @@ fun SearchAndFilter(
 
         }
         BottomTaskbar(
+            sharedViewModel,
+            navController ,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 0.dp)

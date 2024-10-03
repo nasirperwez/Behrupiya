@@ -10,12 +10,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.TransparentDialog
+import com.eramlab.behrupiya.presentation.ui.settings.SettingsScreen
 
 @Composable
-fun BottomTaskbar(modifier: Modifier = Modifier) {
+fun BottomTaskbar(
+    sharedViewModel: SharedViewModel,
+    navController: NavController, modifier: Modifier = Modifier) {
     var showDialog by remember { mutableStateOf(false) }
+    var settingDialog by remember { mutableStateOf(false) }
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -37,13 +43,19 @@ fun BottomTaskbar(modifier: Modifier = Modifier) {
                 onClick = { showDialog = true },
                 size = 70.dp
             )
+            if (showDialog) {
+                TransparentDialog(
+                    sharedViewModel ,
+                    navController ,onDismiss = { showDialog = false })
+            }
             TaskbarIcon(
                 R.drawable.setting_footer_icn_s,
-                onClick = { /* Handle settings click */ }
+                onClick = { settingDialog = true }
             )
-            if (showDialog) {
-                TransparentDialog(onDismiss = { showDialog = false })
+            if (settingDialog) {
+                SettingsScreen(onMDismiss = { settingDialog = false })
             }
+
         }
     }
 }

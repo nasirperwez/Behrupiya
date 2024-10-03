@@ -1,4 +1,4 @@
-package com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateTopbarComponent
+package com.eramlab.behrupiya.presentation.ui.screens.generate.component.generateyopbarcomponent
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Text
@@ -10,17 +10,26 @@ import androidx.compose.ui.unit.sp
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateTextSelect
 
 @Composable
-fun categoryFilters(modifier: Modifier = Modifier) {
+fun categoryFilters(
+    categories: List<String>,
+    selectedCategory: String,
+    onCategorySelected: (String) -> Unit,
+    modifier: Modifier = Modifier) {
 
     Row(
         modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Sikh ",
+            text = selectedCategory,
             fontSize = 20.sp,
             color = Color.White
         )
-        GenerateTextSelect()
+        GenerateTextSelect(
+            categories = categories,
+            selectedCategory = selectedCategory,
+            onCategorySelected = onCategorySelected,
+
+        )
     }
 }
