@@ -72,12 +72,11 @@ fun GenerateTextSelect(
             expanded = expandedCulture,
             onDismissRequest = { expandedCulture = false }
         ) {
-            options.forEach { option ->
+            categories.forEach { option ->
                 DropdownMenuItem(
                     text = { Text(option) },
                     onClick = {
-                        selectedCulture = option
-                        expandedCulture = false
+                        onCategorySelected(option)
                     }
                 )
             }

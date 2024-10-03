@@ -24,8 +24,9 @@ class NetworkLayer {
     suspend fun fetchCategoryData(): List<CategoryData> {
         return client.get(AppConstants.JSON_DATA_ENDPOINT).body()
     }
-
     fun close() {
         client.close()
     }
+
+
 }

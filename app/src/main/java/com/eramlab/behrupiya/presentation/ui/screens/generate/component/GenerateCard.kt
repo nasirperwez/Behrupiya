@@ -1,10 +1,8 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,13 +19,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.eramlab.behrupiya.data.model.GenCard
+import coil.compose.AsyncImage
+import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.data.model.genImg
 
 @Composable
-fun CardItem(cardimg: GenCard) {
+fun CardItem(item: Item) {
 
     Column(
         modifier = Modifier
@@ -49,14 +48,15 @@ fun CardItem(cardimg: GenCard) {
                     .shadow(elevation = 0.dp, shape = RoundedCornerShape(20.dp)),
 
                 ) {
-                Image(
-                    painter = painterResource(id = cardimg.image2Res),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .clickable { }
-                        .fillMaxSize()
-
-                )
+//                AsyncImage(
+//                    model = item.output_image,
+//                    contentDescription = item.name,
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .aspectRatio(1f),
+//                    contentScale = ContentScale.Crop
+//
+//                )
             }
         }
 
@@ -65,7 +65,7 @@ fun CardItem(cardimg: GenCard) {
                 .width(100.dp)
         ) {
             Text(
-                text = cardimg.name,
+                text = item.name,
                 modifier = Modifier.align(Alignment.Center),
                 color = Color.White
             )
@@ -76,15 +76,20 @@ fun CardItem(cardimg: GenCard) {
 }
 
 @Composable
-fun GenerateCard(modifier: Modifier = Modifier) {
+fun GenerateCard(
+    items:List<Item>,
+    categories: List<String>,
+    selectedCategory: String,
+    onCategorySelected: (String) -> Unit,
+    modifier: Modifier = Modifier) {
     val abhi = remember { genImg() }
     LazyHorizontalGrid(
         modifier = modifier.padding(),
         rows = GridCells.Fixed(1),
 
         ) {
-        items(abhi) { abhi ->
-            CardItem(cardimg = abhi)
+        items(items) { item ->
+            CardItem(item)
         }
     }
 }

@@ -18,9 +18,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.presentation.SharedViewModel
+import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
 @Composable
-fun GenerateButton() {
+fun GenerateButton(
+    sharedViewModel: SharedViewModel,
+    generateImageViewModel: GenerateImageViewModel) {
     Row {
         Box(
             modifier = Modifier
@@ -32,7 +36,10 @@ fun GenerateButton() {
                 .background(color = Color(0xFF77B4D8))
                 .height(50.dp)
                 .fillMaxWidth(0.70f)
-                .clickable { }
+                .clickable { sharedViewModel.bitmap_set?.let {
+                    generateImageViewModel.OngenerateImage(
+                        it,"Man Img")
+                } }
 
         )
         {

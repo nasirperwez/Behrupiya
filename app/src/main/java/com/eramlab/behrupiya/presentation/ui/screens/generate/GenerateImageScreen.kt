@@ -37,9 +37,10 @@ fun GenerateImageScreen(
     )
     {
         GenerateAndSave(
+            generateImageViewModel,
             categories = categories,
             selectedCategory = selectedCategory,
-            onCategorySelected = {  },
+            onCategorySelected = {  generateImageViewModel.setSelectedCategory(it)},
             sharedViewModel,
             modifier = Modifier
                 .fillMaxWidth()
@@ -48,6 +49,10 @@ fun GenerateImageScreen(
 
         )
         GenerateCard(
+            items = items,
+            categories = categories,
+            selectedCategory = selectedCategory,
+            onCategorySelected = {  },
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
