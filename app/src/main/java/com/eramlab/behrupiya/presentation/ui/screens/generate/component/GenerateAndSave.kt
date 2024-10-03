@@ -13,10 +13,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.presentation.SharedViewModel
+import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
 @Composable
 fun GenerateAndSave(
-
+    generateImageViewModel: GenerateImageViewModel,
     categories: List<String>,
     selectedCategory: String,
     onCategorySelected: (String) -> Unit,
@@ -47,6 +48,7 @@ fun GenerateAndSave(
         )
 
         GenerateImage(
+
             sharedViewModel,
             modifier = Modifier
                 .fillMaxWidth()
@@ -56,6 +58,8 @@ fun GenerateAndSave(
         )
 
         GenerateAndsave(
+            sharedViewModel,
+            generateImageViewModel,
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()

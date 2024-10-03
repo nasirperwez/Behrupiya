@@ -36,10 +36,10 @@ class HomeViewModel : ViewModel() {
             try {
                 val response = networkLayer.fetchCategoryData()
                 _categoryData.value = response
-                _categories.value = response.map { it.category }.plus("All")
+                _categories.value = response.map { it.name }.plus("All")
 
                 // Initially, show all items
-                _items.value = response.flatMap { it.items }
+                _items.value = response.flatMap { it.effects }
 
             } catch (e: Exception) {
                 // Handle error
@@ -53,8 +53,8 @@ class HomeViewModel : ViewModel() {
     fun selectCategory(category: String) {
         _selectedCategory.value = category
         _items.value = when (category) {
-            "All" -> _categoryData.value.flatMap { it.items }
-            else -> _categoryData.value.find { it.category == category }?.items ?: emptyList()
+            "All" -> _categoryData.value.flatMap { it.effects }
+            else -> _categoryData.value.find { it.name == category }?.effects ?: emptyList()
         }
     }
 

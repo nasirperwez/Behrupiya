@@ -12,10 +12,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateAndSave.GenerateAndSaveBox
 import androidx.compose.ui.unit.dp
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateAndSave.GenerateBox
+import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
 @Composable
-fun GenerateAndsave(modifier: Modifier = Modifier) {
+fun GenerateAndsave(
+    sharedViewModel: SharedViewModel,
+    generateImageViewModel: GenerateImageViewModel,
+    modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -25,7 +30,9 @@ fun GenerateAndsave(modifier: Modifier = Modifier) {
 
     ) {
         Spacer(modifier = Modifier.padding(top = 10.dp))
-        GenerateAndSaveBox()
+        GenerateAndSaveBox(
+            sharedViewModel,
+            generateImageViewModel)
         Spacer(modifier = Modifier.padding(top = 15.dp))
         GenerateBox()
     }
