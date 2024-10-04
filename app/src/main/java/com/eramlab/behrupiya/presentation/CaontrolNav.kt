@@ -8,19 +8,21 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.eramlab.behrupiya.presentation.ui.screens.generate.GenerateImageScreen
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.HomeScreen
 import com.eramlab.behrupiya.utils.NavigationRoutes
 import androidx.compose.runtime.State
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.eramlab.behrupiya.presentation.ui.onboarding.OnboardingScreen1
+import com.eramlab.behrupiya.presentation.ui.screens.onboarding.OnboardingScreen2
+import com.eramlab.behrupiya.presentation.ui.screens.onboarding.OnboardingScreen3
+
+import com.eramlab.behrupiya.presentation.ui.splash.SplashScreen
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 import com.eramlab.behrupiya.presentation.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
@@ -70,16 +72,27 @@ fun ControlNav()
             Box(modifier = Modifier.padding(innerPadding)) {
                 NavHost(
                     navController = navController,
-                    startDestination = NavigationRoutes.HOME
+                    startDestination = NavigationRoutes.SPLASH
                 ) {
                     // Splash Screen
                     composable(route = NavigationRoutes.SPLASH) {
-//                       SplashScreen(navController = navController)
+                       SplashScreen(navController = navController)
                     }
-
+                    // ONBOARDING Screen
+                    composable(route = NavigationRoutes.ONBOARDING1) {
+                        OnboardingScreen1(navController = navController)
+                    }
+                    composable(route = NavigationRoutes.ONBOARDING2) {
+                        OnboardingScreen2(navController = navController)
+                    }
+                    composable(route = NavigationRoutes.ONBOARDING3) {
+                        OnboardingScreen3(navController = navController)
+                    }
+                    //HOME Scree
                     composable(route = NavigationRoutes.HOME) {
                         HomeScreen(homeViewModel = homeViewModel,sharedViewModel = sharedViewModel,navController = navController)
                     }
+
                     composable(route = NavigationRoutes.GENERATE_SCREEN) {
                             GenerateImageScreen(
                                 generateImageViewModel = generateImageViewModel,

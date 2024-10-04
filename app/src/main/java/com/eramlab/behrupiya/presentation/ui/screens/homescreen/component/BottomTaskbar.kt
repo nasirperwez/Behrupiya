@@ -16,6 +16,8 @@ import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.TransparentDialog
 import com.eramlab.behrupiya.presentation.ui.settings.SettingsScreen
 
+
+
 @Composable
 fun BottomTaskbar(
     sharedViewModel: SharedViewModel,
@@ -27,7 +29,7 @@ fun BottomTaskbar(
             .fillMaxWidth()
             .height(60.dp)
             .clip(RoundedCornerShape(10.dp))
-            .background(Color(0xC3202027))
+            .background(Color(0xFF000000))
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),

@@ -27,12 +27,20 @@ fun Search(modifier: Modifier = Modifier)
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = "Indian AI Filters",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White
-        )
+        Row {
+            Text(
+                text = "Indian ",
+                fontSize = 28.sp,
+                color = Color.White
+            )
+            Text(
+                text = "Ai Filters",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+
         IconButton(onClick = { /* TODO */ }) {
             Icon(
                 imageVector = Icons.Default.Search,

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.*
+import com.eramlab.behrupiya.presentation.ui.screens.premium.PreminumScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -12,6 +13,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 ControlNav()
+                //PreminumScreen()
             }
         }
     }

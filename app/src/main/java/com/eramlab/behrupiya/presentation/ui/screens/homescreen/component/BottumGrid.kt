@@ -7,14 +7,17 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.eramlab.behrupiya.R
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.utils.AppConstants
 
 @Composable
-fun ItemGrid(modifier: Modifier = Modifier,items: List<Item>) {
+fun ItemGrid(modifier: Modifier = Modifier, items: List<Item>) {
     LazyVerticalGrid(
         modifier = modifier
             .fillMaxWidth()
@@ -25,33 +28,37 @@ fun ItemGrid(modifier: Modifier = Modifier,items: List<Item>) {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(items) { item ->
-            ItemCard(modifier,item)
+            ItemCard(modifier, item)
         }
     }
 }
 
 @Composable
-fun ItemCard(modifier: Modifier = Modifier,item: Item) {
-    Card(
-        modifier = Modifier
-            .padding(4.dp)
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-    ) {
-        Column {
+fun ItemCard(modifier: Modifier = Modifier, item: Item) {
+    Column(modifier = modifier) {
+        Card(
+            modifier = Modifier
+                .fillMaxSize(),
+            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        ) {
             AsyncImage(
-
                 model = AppConstants.IMG_BASE_ENDPOINT + item.output_image,
                 contentDescription = item.name,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxSize()
                     .aspectRatio(1f),
-                contentScale = ContentScale.Crop
-            )
-            Text(
-                text = item.name,
-                modifier = Modifier.padding(8.dp)
+                contentScale = ContentScale.Crop,
+                placeholder = painterResource(id = R.drawable.default_lago),
+                error = painterResource(id = R.drawable.default_lago)
             )
         }
+        Text(
+            text = item.name,
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth(), // Ensure the Text takes full width
+            color = Color.White,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+        )
     }
 }

@@ -27,6 +27,6 @@ fun FeatureRow(text: String) {
             contentDescription = null
         )
         Spacer(modifier = Modifier.width(10.dp))
-        Text(text = text, fontSize = 17.sp, fontWeight = FontWeight.Bold, color = Color.White)
+        Text(text = text, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
     }
 }

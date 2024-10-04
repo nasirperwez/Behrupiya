@@ -32,9 +32,9 @@ fun TopSection(modifier: Modifier=Modifier) {
             Image(painter = painterResource(id = R.drawable.close_icn), contentDescription = null)
         }
         Spacer(modifier = Modifier.padding(top = 20.dp))
-        Text(text = "Upgrade", fontSize = 35.sp, color = Color(0xFF8A9196))
+        Text(text = "Upgrade", fontSize = 35.sp, color = Color(0xFFB5BCC2))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = "to", fontSize = 35.sp, color = Color(0xFF8A9196))
+            Text(text = "to", fontSize = 35.sp, color = Color(0xFFB5BCC2))
             Spacer(modifier = Modifier.width(5.dp))
             Text(
                 text = "Premium",

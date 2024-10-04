@@ -29,8 +29,7 @@ fun SearchAndFilter(sharedViewModel: SharedViewModel, navController: NavControll
             modifier = modifier
                 .fillMaxSize()
                 .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
-                .background(Color.Blue)
-
+                .background(Color(0xFF222222))
         ) {
 
             Search(

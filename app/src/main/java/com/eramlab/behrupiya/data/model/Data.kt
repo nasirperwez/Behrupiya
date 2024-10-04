@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
 //    val title: String,
 //    val imageUrl: String,
 //)
-//
+
 @Serializable
 data class CategoryData(
     val name: String,

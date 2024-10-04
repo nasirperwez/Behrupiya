@@ -19,6 +19,7 @@ import com.eramlab.behrupiya.presentation.ui.screens.premium.premiumComponent.Of
 import com.eramlab.behrupiya.presentation.ui.screens.premium.premiumComponent.TopSection
 import androidx.compose.foundation.Image
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.eramlab.behrupiya.R
 
@@ -30,13 +31,14 @@ fun PreminumScreen() {
         painter = painterResource(id = R.drawable.background_image),
         contentDescription = null,
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize(),
+            contentScale = ContentScale.Crop
 
     )
     Column(
         modifier = Modifier
             .fillMaxSize()
-           // .background(color = Color(0xD5080809))
+        // .background(color = Color(0xD5080809))
     ) {
         TopSection(
             modifier = Modifier
