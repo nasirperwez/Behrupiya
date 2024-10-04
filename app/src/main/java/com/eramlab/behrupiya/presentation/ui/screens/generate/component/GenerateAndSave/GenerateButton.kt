@@ -37,8 +37,8 @@ fun GenerateButton(
                 .height(50.dp)
                 .fillMaxWidth(0.70f)
                 .clickable { sharedViewModel.bitmap_set?.let {
-                    generateImageViewModel.OngenerateImage(
-                        it,"Man Img")
+                    generateImageViewModel.onGenerateImage(
+                        it,"Man img in uperman look")
                 } }
 
         )
