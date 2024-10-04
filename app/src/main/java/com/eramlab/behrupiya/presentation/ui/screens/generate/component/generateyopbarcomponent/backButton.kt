@@ -7,18 +7,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.eramlab.behrupiya.R
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.navigation.NavController
+import com.eramlab.behrupiya.utils.NavigationRoutes
 
 
 @Composable
-fun backButton(modifier: Modifier) {
+fun backButton(navController: NavController, modifier: Modifier) {
     IconButton(
-        onClick = { },
+        onClick = { navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) },
         modifier = modifier
             .fillMaxHeight()
     ) {
         Image(
             painter = painterResource(id = R.drawable.back_icn),
-            contentDescription = null
+            contentDescription = null,
         )
     }
 }

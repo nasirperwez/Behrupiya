@@ -10,5 +10,9 @@ object NavigationRoutes {
 
     // Home and Main Features
     const val HOME = "HomeScreen"
+
+    const val  TRANSPARENTDIALOG="TransparentDialog"
+
+
     const val GENERATE_SCREEN = "GenerateImageScreen"
 }

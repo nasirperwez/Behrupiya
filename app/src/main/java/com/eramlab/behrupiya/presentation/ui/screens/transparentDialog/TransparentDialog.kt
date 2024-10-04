@@ -9,8 +9,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 
 
-
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -31,12 +31,14 @@ import com.eramlab.behrupiya.utils.rememberPermissionLauncher
 @Composable
 fun TransparentDialog(
     sharedViewModel: SharedViewModel,
-    navController: NavController,  onDismiss: () -> Unit) {
+    navController: NavController,
+    onDismiss: () -> Unit
+) {
     var bitmap by remember { mutableStateOf<Bitmap?>(null) }
     val context = LocalContext.current
 
-    val cameraLauncher = rememberCameraLauncher(sharedViewModel,navController) { bitmap = it }
-    val permissionLauncher = rememberPermissionLauncher(sharedViewModel,context, cameraLauncher)
+    val cameraLauncher = rememberCameraLauncher(sharedViewModel, navController) { bitmap = it }
+    val permissionLauncher = rememberPermissionLauncher(sharedViewModel, context, cameraLauncher)
     val galleryLauncher = rememberGalleryLauncher(context) { bitmap = it }
 
     Dialog(
@@ -54,14 +56,32 @@ fun TransparentDialog(
                 .clickable(onClick = onDismiss)
         ) {
 
-            Column(modifier = Modifier.fillMaxSize()) {
-                ImagePreviewCard( modifier = Modifier.weight(.6f) ,bitmap)
-                ActionButton(modifier = Modifier.padding(2.dp).weight(.2f),
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center
+            ) {
+                ImagePreviewCard(
+                    modifier = Modifier
+                        .weight(0.6f)
+                        .fillMaxWidth(),
+                    bitmap = bitmap
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                ActionButton(modifier = Modifier
+                    .padding(2.dp)
+                    .fillMaxWidth()
+                    .weight(.2f),
                     text = "Take a photo",
                     iconResId = R.drawable.takepic_icn,
                     onClick = {
                         when {
-                            ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED -> {
+                            ContextCompat.checkSelfPermission(
+                                context,
+                                Manifest.permission.CAMERA
+                            ) == PackageManager.PERMISSION_GRANTED -> {
                                 cameraLauncher.launch()
                             }
                             else -> {
@@ -71,13 +91,24 @@ fun TransparentDialog(
                     }
                 )
                 Spacer(modifier = Modifier.padding(top = 22.dp))
-                ActionButton(modifier = Modifier.padding(2.dp).weight(.2f),
+
+                ActionButton(
+                    modifier = Modifier
+                        .padding(2.dp)
+                        .fillMaxWidth()
+                        .weight(0.2f),
                     text = "Choose from gallery",
                     iconResId = R.drawable.chooseg_icn,
-                    onClick = { galleryLauncher.launch("image/*") }
+                    onClick = {
+                        galleryLauncher.launch("image/*")
+                    }
                 )
             }
-            CloseButton(onClick = onDismiss)
+            CloseButton(
+                navController,
+                modifier = Modifier.align(Alignment.TopEnd),
+                onClick = onDismiss
+            )
         }
     }
 }

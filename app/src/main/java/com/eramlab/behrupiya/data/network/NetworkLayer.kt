@@ -48,7 +48,7 @@ class NetworkLayer {
     suspend fun generateimage(bitmap: Bitmap, prompt: String , imageFile:File ): HttpResponse {
 
 
-             return client.post("http://192.168.1.3:8080/generate-image/") {
+             return client.post("http://122.160.116.97:8080/generate-image/") {
                     headers {
                         append(HttpHeaders.Accept, "application/json")
                     }
