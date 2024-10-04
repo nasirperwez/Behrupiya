@@ -21,6 +21,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.eramlab.behrupiya.presentation.ui.onboarding.OnboardingScreen1
 import com.eramlab.behrupiya.presentation.ui.screens.onboarding.OnboardingScreen2
 import com.eramlab.behrupiya.presentation.ui.screens.onboarding.OnboardingScreen3
+import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.TransparentDialog
 
 import com.eramlab.behrupiya.presentation.ui.splash.SplashScreen
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
@@ -88,9 +89,14 @@ fun ControlNav()
                     composable(route = NavigationRoutes.ONBOARDING3) {
                         OnboardingScreen3(navController = navController)
                     }
-                    //HOME Scree
+                    //HOME Screen
                     composable(route = NavigationRoutes.HOME) {
                         HomeScreen(homeViewModel = homeViewModel,sharedViewModel = sharedViewModel,navController = navController)
+                    }
+                    //TRANSPARENTDIALOG Screen
+                    composable(route = NavigationRoutes.TRANSPARENTDIALOG) {
+                        TransparentDialog(sharedViewModel = sharedViewModel, navController = navController) {
+                        }
                     }
 
                     composable(route = NavigationRoutes.GENERATE_SCREEN) {

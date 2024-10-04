@@ -18,7 +18,9 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.utils.NavigationRoutes
 
 @Composable
 fun ImagePreviewCard(modifier: Modifier = Modifier, bitmap: Bitmap?) {
@@ -29,10 +31,18 @@ fun ImagePreviewCard(modifier: Modifier = Modifier, bitmap: Bitmap?) {
             .fillMaxHeight()
             .shadow(elevation = 0.dp, shape = RoundedCornerShape(15.dp))
     ) {
-        bitmap?.let { imageBitmap ->
+        if (bitmap != null) {
             Image(
-                bitmap = imageBitmap.asImageBitmap(),
+                bitmap = bitmap.asImageBitmap(),
                 contentDescription = null,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .align(Alignment.CenterHorizontally)
+            )
+        } else {
+            Image(
+                painter = painterResource(id = R.drawable.aa), // replace with your default image
+                contentDescription = "Default Image",
                 modifier = Modifier
                     .fillMaxSize()
                     .align(Alignment.CenterHorizontally)
@@ -74,10 +84,14 @@ fun ActionButton(modifier: Modifier = Modifier, text: String, iconResId: Int, on
 }
 
 @Composable
-fun CloseButton(onClick: () -> Unit) {
+fun CloseButton(navController: NavController, onClick: () -> Unit, modifier: Modifier) {
     IconButton(
-        onClick = onClick,
-        modifier = Modifier
+        onClick = {
+            navController.navigate(
+                NavigationRoutes.HOME
+            )
+        },
+        modifier = modifier
             .padding(start = 50.dp, top = 15.dp)
             .size(70.dp)
     ) {

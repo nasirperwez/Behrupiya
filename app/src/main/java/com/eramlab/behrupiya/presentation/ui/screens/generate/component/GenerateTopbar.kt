@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Arrangement
+import androidx.navigation.NavController
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.generateyopbarcomponent.backButton
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.generateyopbarcomponent.categoryFilters
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.generateyopbarcomponent.imageIcon
@@ -17,6 +18,7 @@ import com.eramlab.behrupiya.presentation.ui.screens.generate.component.generate
 
 @Composable
 fun GenerateTopbar(
+    navController: NavController,
     categories: List<String>,
     selectedCategory: String,
     onCategorySelected: (String) -> Unit,
@@ -35,6 +37,7 @@ fun GenerateTopbar(
             verticalAlignment = Alignment.CenterVertically
         ) {
             backButton(
+                navController,
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()

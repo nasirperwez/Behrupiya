@@ -28,7 +28,7 @@ fun GenerateImageScreen(
     val categories by generateImageViewModel.categories.collectAsState()
     val selectedCategory by generateImageViewModel.selectedCategory.collectAsState()
     val items by generateImageViewModel.items.collectAsState()
-    val isLoading by generateImageViewModel.isLoading.collectAsState()
+   // val isLoading by generateImageViewModel.isLoading.collectAsState()
 
     Column(
         modifier = Modifier
@@ -37,6 +37,7 @@ fun GenerateImageScreen(
     )
     {
         GenerateAndSave(
+            navController,
             generateImageViewModel,
             categories = categories,
             selectedCategory = selectedCategory,
