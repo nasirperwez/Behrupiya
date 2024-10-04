@@ -1,5 +1,6 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.data.model.genImg
+import com.eramlab.behrupiya.utils.AppConstants
 
 @Composable
 fun CardItem(item: Item) {
@@ -37,6 +39,9 @@ fun CardItem(item: Item) {
         Box(
             modifier = Modifier
                 .padding(4.dp)
+                .clickable {
+
+                }
             //.aspectRatio(1f)
 
         ) {
@@ -48,15 +53,15 @@ fun CardItem(item: Item) {
                     .shadow(elevation = 0.dp, shape = RoundedCornerShape(20.dp)),
 
                 ) {
-//                AsyncImage(
-//                    model = item.output_image,
-//                    contentDescription = item.name,
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .aspectRatio(1f),
-//                    contentScale = ContentScale.Crop
-//
-//                )
+                AsyncImage(
+
+                    model = AppConstants.IMG_BASE_ENDPOINT + item.output_image,
+                    contentDescription = item.name,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f),
+                    contentScale = ContentScale.Crop
+                )
             }
         }
 

@@ -66,11 +66,16 @@ dependencies {
     implementation("io.ktor:ktor-client-core:2.3.3")
     implementation("io.ktor:ktor-client-json:2.3.3")
     implementation("io.ktor:ktor-client-serialization:2.3.3")
-    implementation("io.ktor:ktor-client-logging:2.3.3")
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.3")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.3")
+    implementation("io.ktor:ktor-client-logging:2.3.5")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.5")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.5")
 
-    // Coil for image loading
+
+
+//    implementation "io.ktor:ktor-client-android:2.3.5"
+//    implementation "io.ktor:ktor-client-content-negotiation:2.3.5"
+//    implementation "io.ktor:ktor-serialization-kotlinx-json:2.3.5"
+     // Coil for image loading
     implementation("io.coil-kt:coil-compose:2.4.0")
 
     // Add this line for ViewModel support in Compose

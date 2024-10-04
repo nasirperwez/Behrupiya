@@ -34,7 +34,7 @@ fun ControlNav()
     val sharedViewModel: SharedViewModel = viewModel()
     val generateImageViewModel: GenerateImageViewModel = viewModel()
     val homeViewModel: HomeViewModel = viewModel()
-
+    generateImageViewModel.setSharedViewModel(sharedViewModel)
     LaunchedEffect(homeViewModel) {
         launch {
             homeViewModel.categories.collect { categories ->
