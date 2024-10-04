@@ -27,6 +27,7 @@ data class CategoryData(
 data class Item(
     val effect_id: String,
     val name: String,
+    val prompt: String,
     @SerialName("output_image")val output_image: String? = null
 )
 
