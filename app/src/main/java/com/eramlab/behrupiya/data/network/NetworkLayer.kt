@@ -48,7 +48,7 @@ class NetworkLayer {
     suspend fun generateimage(bitmap: Bitmap, prompt: String , imageFile:File ): HttpResponse {
 
 
-             return client.post("http://122.160.116.97:8080/generate-image/") {
+             return client.post("http://192.168.1.3:8080/generate-image/") {
                     headers {
                         append(HttpHeaders.Accept, "application/json")
                     }
@@ -59,7 +59,7 @@ class NetworkLayer {
                                 append(HttpHeaders.ContentDisposition, "filename=\"${imageFile.name}\"")
                             })
                             append("prompt", prompt)
-                            append("negative_prompt", "")
+                            append("negative_prompt", "Blurry, low quality, distorted faces, extra limbs, unnatural lighting, oversaturated colors, pixelation, artifacts, unrealistic proportions, text, logos, watermark, grainy textures, messy backgrounds, chaotic composition, noise, harsh shadows, inconsistent details, overly smooth skin, exaggerated facial expressions, odd angles, missing details, incorrect anatomy, overexposure, underexposure, warped edges.")
                             append("style", "Photographic (Default)")
                             append("steps", "50")
                             append("width", "1024")

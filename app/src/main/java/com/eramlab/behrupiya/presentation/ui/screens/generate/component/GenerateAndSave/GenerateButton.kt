@@ -37,8 +37,11 @@ fun GenerateButton(
                 .height(50.dp)
                 .fillMaxWidth(0.70f)
                 .clickable { sharedViewModel.bitmap_set?.let {
-                    generateImageViewModel.onGenerateImage(
-                        it,"Man img in uperman look")
+                    val item= sharedViewModel.getCurrentItem()
+                    if (item != null) {
+                        generateImageViewModel.onGenerateImage(
+                            it,item.prompt)
+                    }
                 } }
 
         )

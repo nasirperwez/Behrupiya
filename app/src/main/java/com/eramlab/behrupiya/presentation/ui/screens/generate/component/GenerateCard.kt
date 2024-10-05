@@ -25,10 +25,13 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.data.model.genImg
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.utils.AppConstants
 
 @Composable
-fun CardItem(item: Item) {
+fun CardItem(
+    sharedViewModel: SharedViewModel,
+    item: Item) {
 
     Column(
         modifier = Modifier
@@ -51,6 +54,9 @@ fun CardItem(item: Item) {
                     .width(100.dp)
                     .height(120.dp)
                     .shadow(elevation = 0.dp, shape = RoundedCornerShape(20.dp)),
+                    onClick = {
+                        sharedViewModel.setCurrentItem(item)
+                    }
 
                 ) {
                 AsyncImage(
@@ -82,6 +88,7 @@ fun CardItem(item: Item) {
 
 @Composable
 fun GenerateCard(
+    sharedViewModel: SharedViewModel,
     items:List<Item>,
     categories: List<String>,
     selectedCategory: String,
@@ -94,7 +101,10 @@ fun GenerateCard(
 
         ) {
         items(items) { item ->
-            CardItem(item)
+            CardItem(
+                sharedViewModel,
+                item
+            )
         }
     }
 }

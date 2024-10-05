@@ -18,6 +18,7 @@ import com.eramlab.behrupiya.presentation.ui.screens.homescreen.HomeScreen
 import com.eramlab.behrupiya.utils.NavigationRoutes
 import androidx.compose.runtime.State
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.presentation.ui.onboarding.OnboardingScreen1
 import com.eramlab.behrupiya.presentation.ui.screens.onboarding.OnboardingScreen2
 import com.eramlab.behrupiya.presentation.ui.screens.onboarding.OnboardingScreen3
@@ -115,13 +116,54 @@ fun ControlNav()
 
 
 
+//class SharedViewModel : ViewModel() {
+//    private val _bitmap = mutableStateOf<Bitmap?>(null)
+//    val bitmap: State<Bitmap?> = _bitmap
+//    var bitmap_set= _bitmap.value
+//
+//    val cItem - Item
+//
+//
+//    private val _currentItem = mutableStateOf<Item?>(null)
+//    val currentItem: State<Item?> = _currentItem
+//
+//
+//    fun setBitmap(newBitmap: Bitmap) {
+//        _bitmap.value = newBitmap
+//        bitmap_set = newBitmap
+//    }
+//
+//    fun setCurrentitem(currentItem: Item) {
+//        currentItem = currentItem
+//
+//    }
+//}
+
 class SharedViewModel : ViewModel() {
     private val _bitmap = mutableStateOf<Bitmap?>(null)
     val bitmap: State<Bitmap?> = _bitmap
-    var bitmap_set= _bitmap.value
+    var bitmap_set = _bitmap.value
+
+    val cItem: Item? = null
+
+    private val _currentItem = mutableStateOf<Item?>(null)
+    val currentItem: State<Item?> = _currentItem
+
+    // Approach 1: Kotlin property (recommended)
+    val currentItemValue: Item?
+        get() = _currentItem.value
+
+    // Approach 2: Traditional getter method
+    fun getCurrentItem(): Item? {
+        return _currentItem.value
+    }
 
     fun setBitmap(newBitmap: Bitmap) {
         _bitmap.value = newBitmap
         bitmap_set = newBitmap
+    }
+
+    fun setCurrentItem(item: Item) {
+        _currentItem.value = item
     }
 }

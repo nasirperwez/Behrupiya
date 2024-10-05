@@ -11,13 +11,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.eramlab.behrupiya.R
 import com.eramlab.behrupiya.data.model.Item
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.utils.AppConstants
+import com.eramlab.behrupiya.utils.NavigationRoutes
 
 @Composable
-fun ItemGrid(modifier: Modifier = Modifier, items: List<Item>) {
+fun ItemGrid(
+    sharedViewModel: SharedViewModel,
+    navController: NavController,
+    modifier: Modifier = Modifier, items: List<Item>) {
     LazyVerticalGrid(
         modifier = modifier
             .fillMaxWidth()
@@ -28,18 +34,26 @@ fun ItemGrid(modifier: Modifier = Modifier, items: List<Item>) {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(items) { item ->
-            ItemCard(modifier, item)
+            ItemCard(sharedViewModel,navController,modifier, item)
         }
     }
 }
 
 @Composable
-fun ItemCard(modifier: Modifier = Modifier, item: Item) {
+fun ItemCard(
+    sharedViewModel: SharedViewModel,
+    navController: NavController,
+    modifier: Modifier = Modifier, item: Item) {
     Column(modifier = modifier) {
         Card(
-            modifier = Modifier
-                .fillMaxSize(),
-            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+            modifier = Modifier.fillMaxSize(),
+            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+            onClick = {
+                sharedViewModel.setCurrentItem(item)
+                navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) {
+                    popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                }
+            }
         ) {
             AsyncImage(
                 model = AppConstants.IMG_BASE_ENDPOINT + item.output_image,

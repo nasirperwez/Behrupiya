@@ -24,6 +24,7 @@ import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component.ActionButton
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component.CloseButton
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component.ImagePreviewCard
+import com.eramlab.behrupiya.utils.NavigationRoutes
 import com.eramlab.behrupiya.utils.rememberCameraLauncher
 import com.eramlab.behrupiya.utils.rememberGalleryLauncher
 import com.eramlab.behrupiya.utils.rememberPermissionLauncher
@@ -39,7 +40,10 @@ fun TransparentDialog(
 
     val cameraLauncher = rememberCameraLauncher(sharedViewModel, navController) { bitmap = it }
     val permissionLauncher = rememberPermissionLauncher(sharedViewModel, context, cameraLauncher)
-    val galleryLauncher = rememberGalleryLauncher(context) { bitmap = it }
+    val galleryLauncher = rememberGalleryLauncher(sharedViewModel, navController,context) { bitmap ->
+        sharedViewModel.setBitmap(bitmap)
+        navController.navigate(NavigationRoutes.GENERATE_SCREEN)
+    }
 
     Dialog(
         onDismissRequest = onDismiss,

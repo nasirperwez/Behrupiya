@@ -15,7 +15,8 @@ import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.presentation.SharedViewModel
 
 @Composable
-fun SearchAndFilter(sharedViewModel: SharedViewModel, navController: NavController,
+fun SearchAndFilter(sharedViewModel: SharedViewModel,
+                    navController: NavController,
                     categories: List<String>,
                     selectedCategory: String,
                     onCategorySelected: (String) -> Unit,
@@ -48,6 +49,8 @@ fun SearchAndFilter(sharedViewModel: SharedViewModel, navController: NavControll
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
             } else {
                 ItemGrid(
+                    sharedViewModel,
+                    navController,
                     modifier = modifier
                         .weight(.84f)
                         .fillMaxWidth(),
