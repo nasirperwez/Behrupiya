@@ -40,6 +40,8 @@ fun rememberPermissionLauncher(
 
 @Composable
 fun rememberGalleryLauncher(
+    sharedViewModel: SharedViewModel ,
+    navController: NavController,
     context: Context,
     onImageSelected: (Bitmap) -> Unit
 ): ActivityResultLauncher<String> =

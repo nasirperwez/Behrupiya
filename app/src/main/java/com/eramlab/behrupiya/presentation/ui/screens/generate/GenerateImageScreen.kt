@@ -50,6 +50,7 @@ fun GenerateImageScreen(
 
         )
         GenerateCard(
+            sharedViewModel,
             items = items,
             categories = categories,
             selectedCategory = selectedCategory,
