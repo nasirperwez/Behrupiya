@@ -3,13 +3,10 @@ package com.eramlab.behrupiya.data.network
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
-import androidx.lifecycle.viewModelScope
 import com.eramlab.behrupiya.data.model.CategoryData
 import com.eramlab.behrupiya.data.model.GenerateImageResponse
 import com.eramlab.behrupiya.data.model.Prompt
 import com.eramlab.behrupiya.data.model.RegisterResponse
-import com.eramlab.behrupiya.presentation.viewmodel.UiState
-import com.eramlab.behrupiya.presentation.viewmodel.createTempFileFromBitmap
 import com.eramlab.behrupiya.utils.AppConstants
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -27,12 +24,10 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.Parameters
 import io.ktor.http.contentType
-import io.ktor.http.isSuccess
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.InternalAPI
 import io.ktor.util.toByteArray
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import java.io.File
@@ -53,7 +48,7 @@ class NetworkLayer {
         }
     }
 //    private val BASE_URL = "http://127.0.0.1:8090"
-    private val SHARED_SECRET_KEY = AppConstants.SHARED_SECRET_KEY
+    private val SHARED_SECRET_KEY = AppConstants.SHARED
 
     private val json = Json { ignoreUnknownKeys = true }
 
