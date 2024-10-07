@@ -94,7 +94,8 @@ fun ControlNav()
                     composable(route = NavigationRoutes.HOME) {
                         HomeScreen(homeViewModel = homeViewModel,sharedViewModel = sharedViewModel,navController = navController)
                     }
-                    //TRANSPARENTDIALOG Screen
+
+                    //TRANSPARENT DIALOG Screen
                     composable(route = NavigationRoutes.TRANSPARENTDIALOG) {
                         TransparentDialog(sharedViewModel = sharedViewModel, navController = navController) {
                         }

@@ -56,43 +56,21 @@ fun GenerateImageScreen(
                 .weight(0.75f),
 
         )
-
         GenerateCard(
-                sharedViewModel,
-                items = items,
-                categories = categories,
-                selectedCategory = selectedCategory,
-                onCategorySelected = { },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .weight(0.25f)
+            sharedViewModel,
+            items = items,
+            categories = categories,
+            selectedCategory = selectedCategory,
+            onCategorySelected = { },
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .weight(0.25f)
 
 
-            )
-
+        )
     }
 }
 
 
-
-@Composable
-fun LoadingWrapper(
-    isLoading: Boolean,
-    loadingMessage: String = "Loading...",
-    modifier: Modifier = Modifier
-) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        if (isLoading) {
-            Column(
-                modifier = Modifier.align(Alignment.Center),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                CircularProgressIndicator()
-                Spacer(modifier = modifier.height(16.dp))
-                Text(text = loadingMessage)
-            }
-        }
-    }
-}
 

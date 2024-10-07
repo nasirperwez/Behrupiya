@@ -15,9 +15,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.presentation.SharedViewModel
 
 @Composable
-fun SelectedImage(modifier: Modifier) {
+fun SelectedImage(
+    sharedViewModel: SharedViewModel,
+    modifier: Modifier) {
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -30,8 +33,6 @@ fun SelectedImage(modifier: Modifier) {
             )
             .background(color = Color(0xF29B87C0))
     ) {
-
-
         Image(
             painter = painterResource(id = R.drawable.aa),
             contentDescription = null,

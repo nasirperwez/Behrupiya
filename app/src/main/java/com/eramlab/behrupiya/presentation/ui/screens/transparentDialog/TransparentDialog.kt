@@ -57,7 +57,7 @@ fun TransparentDialog(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0x80000000))
-                .clickable(onClick = onDismiss)
+                //.clickable(onClick = onDismiss)
         ) {
 
             Column(

@@ -62,9 +62,6 @@ class HomeViewModel : ViewModel() {
         super.onCleared()
         networkLayer.close()
     }
-
-
-
 }
 
 
