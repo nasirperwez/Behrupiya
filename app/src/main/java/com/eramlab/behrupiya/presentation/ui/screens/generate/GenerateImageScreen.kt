@@ -56,31 +56,21 @@ fun GenerateImageScreen(
                 .weight(0.75f),
 
         )
-//        if(isLoading) {
-//            GenerateCard(
-//                sharedViewModel,
-//                items = items,
-//                categories = categories,
-//                selectedCategory = selectedCategory,
-//                onCategorySelected = { },
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .fillMaxHeight()
-//                    .weight(0.25f)
-//
-//
-//            )
-//        }
-//        else{
-            LoadingWrapper(
-                isLoading = isLoading,
-                loadingMessage = "Generating image...",
+
+        GenerateCard(
+                sharedViewModel,
+                items = items,
+                categories = categories,
+                selectedCategory = selectedCategory,
+                onCategorySelected = { },
                 modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .weight(0.25f)
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .weight(0.25f)
+
+
             )
-//        }
+
     }
 }
 

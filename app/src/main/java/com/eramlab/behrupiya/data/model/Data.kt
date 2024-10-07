@@ -33,3 +33,24 @@ data class Item(
 
 
 
+// Data classes for responses
+@Serializable
+data class RegisterResponse(val data: RegisterData)
+
+@Serializable
+data class RegisterData(val apiKey: String)
+
+@Serializable
+data class GenerateImageResponse(val imageUrl: String)
+
+@Serializable
+data class User(val id: String, val deviceId: String)
+
+@Serializable
+data class RequestLog(val id: String, val userId: String, val requestType: String, val timestamp: Long)
+
+@Serializable
+data class Prompt(val id: String, val text: String)
+
+
+

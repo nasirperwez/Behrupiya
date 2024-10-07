@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.presentation.SharedViewModel
+import kotlinx.coroutines.delay
 
 @Composable
 fun SearchAndFilter(sharedViewModel: SharedViewModel,
@@ -45,9 +46,12 @@ fun SearchAndFilter(sharedViewModel: SharedViewModel,
                 selectedCategory = selectedCategory,
                 onCategorySelected = onCategorySelected
             )
-            if (isLoading) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+            if (!isLoading) {
+                CircularProgressIndicator(modifier = Modifier
+                    .weight(.84f)
+                    .align(Alignment.CenterHorizontally))
             } else {
+
                 ItemGrid(
                     sharedViewModel,
                     navController,

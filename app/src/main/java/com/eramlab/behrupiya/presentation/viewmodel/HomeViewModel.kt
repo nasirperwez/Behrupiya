@@ -45,7 +45,7 @@ class HomeViewModel : ViewModel() {
                 // Handle error
                 println("Error fetching data: ${e.message}")
             } finally {
-                _isLoading.value = false
+//                _isLoading.value = false
             }
         }
     }

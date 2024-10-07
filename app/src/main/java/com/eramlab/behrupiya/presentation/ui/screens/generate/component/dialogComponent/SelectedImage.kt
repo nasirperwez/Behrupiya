@@ -30,6 +30,8 @@ fun SelectedImage(modifier: Modifier) {
             )
             .background(color = Color(0xF29B87C0))
     ) {
+
+
         Image(
             painter = painterResource(id = R.drawable.aa),
             contentDescription = null,
