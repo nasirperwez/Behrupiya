@@ -3,8 +3,10 @@ package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 import android.graphics.Bitmap
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,16 +26,17 @@ fun GenerateAndSave(
     selectedCategory: String,
     onCategorySelected: (String) -> Unit,
     sharedViewModel: SharedViewModel,
-    modifier: Modifier = Modifier) {
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
             .clip(
                 RoundedCornerShape(
-                    bottomStart = 20.dp,
-                    bottomEnd = 20.dp
+                    bottomStart = 30.dp,
+                    bottomEnd = 30.dp
                 )
             )
-            .background(color = Color(0xC3202027)),
+            .background(color = Color(0xFF313131)),
 //        verticalArrangement = Arrangement.SpaceBetween
 
     ) {
@@ -58,8 +61,8 @@ fun GenerateAndSave(
                 .fillMaxHeight()
                 .weight(0.65f),
 
-        )
-
+            )
+        Spacer(modifier = Modifier.padding(top = 30.dp))
         GenerateAndsave(
             sharedViewModel,
             generateImageViewModel,
@@ -68,8 +71,5 @@ fun GenerateAndSave(
                 .fillMaxHeight()
                 .weight(0.25f)
         )
-
     }
-
-
 }

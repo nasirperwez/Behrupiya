@@ -27,7 +27,7 @@ import com.eramlab.behrupiya.presentation.SharedViewModel
 fun GenerateImage(sharedViewModel: SharedViewModel, modifier: Modifier = Modifier ) {
     Box(
         modifier = modifier
-            .fillMaxWidth().fillMaxHeight().background(color = Color.Yellow),
+            .fillMaxWidth().fillMaxHeight(),
         contentAlignment = Alignment.Center
     ) {
 

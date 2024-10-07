@@ -27,7 +27,7 @@ fun GenerateTopbar(
         modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(color = Color(0xC31E1EA7))
+
     ) {
         Row(
             Modifier

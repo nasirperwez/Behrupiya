@@ -9,20 +9,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.eramlab.behrupiya.presentation.SharedViewModel
 
 @Composable
-fun SaveAndSheare(onDismiss: () -> Unit) {
-    var selectedBox by remember { mutableStateOf<String?>(null) }
+fun SaveAndShare(onDismiss: () -> Unit, sharedViewModel: SharedViewModel) {
+
     Dialog(
         onDismissRequest = { onDismiss() }, properties = DialogProperties(
             dismissOnBackPress = true,
@@ -60,7 +57,9 @@ fun SaveAndSheare(onDismiss: () -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
-                        .weight(0.565f)
+                        .weight(0.565f),
+                    sharedViewModel = sharedViewModel
+
                 )
                 PhoteoAndVideo(
                     modifier = Modifier
@@ -79,6 +78,7 @@ fun SaveAndSheare(onDismiss: () -> Unit) {
                         .fillMaxWidth()
                         .fillMaxHeight()
                         .weight(0.1f)
+
                 )
                 SaveNow(
                     modifier = Modifier
