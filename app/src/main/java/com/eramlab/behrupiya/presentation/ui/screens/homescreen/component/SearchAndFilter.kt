@@ -29,7 +29,7 @@ fun SearchAndFilter(sharedViewModel: SharedViewModel,
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+                .clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp))
                 .background(Color(0xFF222222))
         ) {
 

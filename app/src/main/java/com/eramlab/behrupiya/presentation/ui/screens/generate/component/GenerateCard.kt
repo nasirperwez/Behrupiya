@@ -3,7 +3,9 @@ package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,8 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.eramlab.behrupiya.R
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.data.model.genImg
 import com.eramlab.behrupiya.presentation.SharedViewModel
@@ -31,53 +35,48 @@ import com.eramlab.behrupiya.utils.AppConstants
 @Composable
 fun CardItem(
     sharedViewModel: SharedViewModel,
-    item: Item) {
-
+    item: Item
+) {
     Column(
         modifier = Modifier
-            .padding(15.dp)
+            .padding(start = 15.dp)
             .fillMaxWidth(), // Ensure the column fills the width
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
+        Spacer(modifier = Modifier.padding(top = 15.dp))
+        Card(
             modifier = Modifier
-                .padding(4.dp)
-                .clickable {
-
-                }
-            //.aspectRatio(1f)
+                .width(100.dp)
+                .height(100.dp)
+                .shadow(elevation = 0.dp, shape = RoundedCornerShape(20.dp)),
+            onClick = {
+                sharedViewModel.setCurrentItem(item)
+            }
 
         ) {
-
-            Card(
+            AsyncImage(
+                model = AppConstants.IMG_BASE_ENDPOINT + item.output_image,
+                contentDescription = item.name,
                 modifier = Modifier
-                    .width(100.dp)
-                    .height(120.dp)
-                    .shadow(elevation = 0.dp, shape = RoundedCornerShape(20.dp)),
-                    onClick = {
-                        sharedViewModel.setCurrentItem(item)
-                    }
-
-                ) {
-                AsyncImage(
-
-                    model = AppConstants.IMG_BASE_ENDPOINT + item.output_image,
-                    contentDescription = item.name,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1f),
-                    contentScale = ContentScale.Crop
-                )
-            }
+                    .fillMaxSize()
+                    .aspectRatio(1f),
+                contentScale = ContentScale.Crop,
+                placeholder = painterResource(id = R.drawable.default_lago),
+                error = painterResource(id = R.drawable.default_lago)
+            )
         }
-
+        Spacer(modifier = Modifier.padding(top = 15.dp))
         Box(
             modifier = Modifier
                 .width(100.dp)
+                .align(Alignment.CenterHorizontally)
         ) {
             Text(
                 text = item.name,
-                modifier = Modifier.align(Alignment.Center),
+                modifier = Modifier
+                    .width(100.dp)
+                    .fillMaxSize()
+                    .align(Alignment.Center),
                 color = Color.White
             )
         }
@@ -89,17 +88,17 @@ fun CardItem(
 @Composable
 fun GenerateCard(
     sharedViewModel: SharedViewModel,
-    items:List<Item>,
+    items: List<Item>,
     categories: List<String>,
     selectedCategory: String,
     onCategorySelected: (String) -> Unit,
-    modifier: Modifier = Modifier) {
+    modifier: Modifier = Modifier
+) {
     val abhi = remember { genImg() }
     LazyHorizontalGrid(
-        modifier = modifier.padding(),
+        modifier = modifier,
         rows = GridCells.Fixed(1),
-
-        ) {
+    ) {
         items(items) { item ->
             CardItem(
                 sharedViewModel,

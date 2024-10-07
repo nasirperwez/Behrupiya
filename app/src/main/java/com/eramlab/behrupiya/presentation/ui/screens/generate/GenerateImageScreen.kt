@@ -29,7 +29,8 @@ import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 fun GenerateImageScreen(
     generateImageViewModel: GenerateImageViewModel,
     sharedViewModel: SharedViewModel,
-    navController: NavController ) {
+    navController: NavController
+) {
 
 
     val categories by generateImageViewModel.categories.collectAsState()
@@ -40,7 +41,7 @@ fun GenerateImageScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(0xC3202027))
+            .background(color = Color(0xFF1A1A1A))
     )
     {
         GenerateAndSave(
@@ -48,61 +49,40 @@ fun GenerateImageScreen(
             generateImageViewModel,
             categories = categories,
             selectedCategory = selectedCategory,
-            onCategorySelected = {  generateImageViewModel.setSelectedCategory(it)},
+            onCategorySelected = { generateImageViewModel.setSelectedCategory(it) },
             sharedViewModel,
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .weight(0.75f),
 
-        )
-//        if(isLoading) {
-//            GenerateCard(
-//                sharedViewModel,
-//                items = items,
-//                categories = categories,
-//                selectedCategory = selectedCategory,
-//                onCategorySelected = { },
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .fillMaxHeight()
-//                    .weight(0.25f)
-//
-//
-//            )
-//        }
-//        else{
-            LoadingWrapper(
-                isLoading = isLoading,
-                loadingMessage = "Generating image...",
-                modifier = Modifier
+            )
+        // if(isLoading) {
+        GenerateCard(
+            sharedViewModel,
+            items = items,
+            categories = categories,
+            selectedCategory = selectedCategory,
+            onCategorySelected = { },
+            modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .weight(0.25f)
-            )
-//        }
+
+
+        )
+        // }
+//        else{
+//            LoadingWrapper(
+//                isLoading = isLoading,
+//                loadingMessage = "Generating image...",
+//                modifier = Modifier
+//                .fillMaxWidth()
+//                .fillMaxHeight()
+//                .weight(0.25f)
+//            )
     }
 }
 
 
-
-@Composable
-fun LoadingWrapper(
-    isLoading: Boolean,
-    loadingMessage: String = "Loading...",
-    modifier: Modifier = Modifier
-) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        if (isLoading) {
-            Column(
-                modifier = Modifier.align(Alignment.Center),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                CircularProgressIndicator()
-                Spacer(modifier = modifier.height(16.dp))
-                Text(text = loadingMessage)
-            }
-        }
-    }
-}
 
