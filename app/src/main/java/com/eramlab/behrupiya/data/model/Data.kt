@@ -33,12 +33,18 @@ data class Item(
 
 
 
-// Data classes for responses
 @Serializable
-data class RegisterResponse(val data: RegisterData)
+data class ApiResponse(
+    val success: Boolean,
+    val message: String,
+    val data: RegisterData?
+)
 
 @Serializable
-data class RegisterData(val apiKey: String)
+data class RegisterData(
+    @SerialName("api_key") val apiKey: String?
+)
+
 
 @Serializable
 data class GenerateImageResponse(val imageUrl: String)
