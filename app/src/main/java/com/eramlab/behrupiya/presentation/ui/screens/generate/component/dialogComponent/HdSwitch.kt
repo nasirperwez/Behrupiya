@@ -1,7 +1,6 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component.dialogComponent
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -12,41 +11,61 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun HdSwitch(modifier: Modifier) {
+fun HdSwitch(modifier: Modifier = Modifier) {
     var isFirstSwitchChecked by remember { mutableStateOf(false) }
     var isSecondSwitchChecked by remember { mutableStateOf(false) }
-    Row(modifier = modifier.fillMaxSize(),
-        verticalAlignment = Alignment.CenterVertically
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(
-            text = "Watermark",
-            modifier = Modifier,
-            color = Color.White
-        )
-        Switch(
-            checked = isFirstSwitchChecked, onCheckedChange = {
-                isFirstSwitchChecked = it
-                if (it) {
-                    isSecondSwitchChecked = false
+        // Watermark switch
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.weight(1f)
+        ) {
+            Text(
+                text = "Watermark",
+                color = Color.White,
+                fontSize = 13.sp,
+                modifier = Modifier.padding(end = 8.dp)
+            )
+            Switch(
+                checked = isFirstSwitchChecked,
+                onCheckedChange = {
+                    isFirstSwitchChecked = it
+                    if (it) isSecondSwitchChecked = false
                 }
-            }, modifier = Modifier
-        )
+            )
+        }
 
-        Text(
-            text = "HD Quality",
-            modifier = Modifier,
-            color = Color.White
-        )
-        Switch(
-            checked = isSecondSwitchChecked, onCheckedChange = {
-                isSecondSwitchChecked = it
-                if (it) {
-                    isFirstSwitchChecked = false
+        Spacer(modifier = Modifier.width(16.dp))
+
+        // HD Quality switch
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.weight(1f)
+        ) {
+            Text(
+                text = "HD Quality",
+                color = Color.White,
+                fontSize = 13.sp,
+                modifier = Modifier.padding(end = 8.dp)
+            )
+            Switch(
+                checked = isSecondSwitchChecked,
+                onCheckedChange = {
+                    isSecondSwitchChecked = it
+                    if (it) isFirstSwitchChecked = false
                 }
-            }, modifier = Modifier
-        )
-
+            )
+        }
     }
 }
