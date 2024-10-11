@@ -18,14 +18,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.utils.NavigationRoutes
 
 @Composable
 fun OnboardingHeader2(navController: NavController, modifier: Modifier) {
     Box(
         modifier = modifier
-//            .fillMaxWidth()
-//            .fillMaxHeight(0.6f)
-        //    .background(color = Color.Green)
     ) {
         Image(
             painter = painterResource(id = R.drawable.img3_2x),
@@ -53,7 +51,7 @@ fun OnboardingHeader2(navController: NavController, modifier: Modifier) {
                 modifier = Modifier
                     .padding(end = 20.dp)
                     .align(Alignment.CenterVertically)
-                    .clickable { },
+                    .clickable { navController.navigate(NavigationRoutes.HOME) },
                 color = Color.White
             )
         }

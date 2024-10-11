@@ -24,36 +24,29 @@ import com.eramlab.behrupiya.R
 import com.eramlab.behrupiya.presentation.SharedViewModel
 
 @Composable
-fun GenerateImage(sharedViewModel: SharedViewModel, modifier: Modifier = Modifier ) {
+fun GenerateImage(sharedViewModel: SharedViewModel, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .fillMaxWidth().fillMaxHeight(),
+            .fillMaxWidth()
+            .fillMaxHeight(),
         contentAlignment = Alignment.Center
     ) {
 
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.75f)
-
-
         ) {
-
-
             Card(
-
                 modifier = Modifier
                     .shadow(elevation = 5.dp, shape = RoundedCornerShape(15.dp)),
-
-
                 ) {
-
                 val bitmap by sharedViewModel.bitmap
                 bitmap?.let { btm ->
                     Image(
                         bitmap = btm.asImageBitmap(),
-                        contentDescription = "Passed Image" ,
+                        contentDescription = "Passed Image",
                         modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.Crop,
                     )
                 }
             }

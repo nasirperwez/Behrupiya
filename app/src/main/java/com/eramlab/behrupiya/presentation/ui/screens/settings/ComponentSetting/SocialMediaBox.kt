@@ -12,9 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.eramlab.behrupiya.presentation.SharedViewModel
 
 @Composable
-fun SocialMediaBox(modifier: Modifier) {
+fun SocialMediaBox(modifier: Modifier, ) {
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -28,12 +29,12 @@ fun SocialMediaBox(modifier: Modifier) {
                     .fillMaxHeight()
                     .weight(0.9f)
             )
-            SocialMedia(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .weight(0.1f)
-            )
+//            SocialMedia(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .fillMaxHeight()
+//                    .weight(0.1f)
+//            )
         }
     }
 }

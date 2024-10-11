@@ -1,6 +1,5 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
-import android.graphics.Bitmap
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,7 +13,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
@@ -36,8 +34,8 @@ fun GenerateAndSave(
                     bottomEnd = 30.dp
                 )
             )
-            .background(color = Color(0xFF313131)),
-//        verticalArrangement = Arrangement.SpaceBetween
+            .background(color = Color(0xFF333333)),
+//
 
     ) {
 

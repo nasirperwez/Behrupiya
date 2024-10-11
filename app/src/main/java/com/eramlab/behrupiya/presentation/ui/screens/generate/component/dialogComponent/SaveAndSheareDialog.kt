@@ -1,5 +1,6 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component.dialogComponent
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -77,14 +78,15 @@ fun SaveAndShare(onDismiss: () -> Unit, sharedViewModel: SharedViewModel) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
-                        .weight(0.1f)
+                        .weight(0.08f),
+                    sharedViewModel = sharedViewModel
 
                 )
                 SaveNow(
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
-                        .weight(0.06f)
+                        .weight(0.08f),
                 )
                 TryButton(
                     modifier = Modifier

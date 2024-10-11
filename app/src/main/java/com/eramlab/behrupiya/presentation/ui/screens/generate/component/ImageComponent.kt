@@ -1,6 +1,5 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -29,6 +29,7 @@ import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateAndSave.SaveAndShareBox
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 import androidx.compose.runtime.*
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
@@ -50,23 +51,16 @@ fun GenerateAndsave(
 
     ) {
         if (isLoading == 0) {
-            GenerateAndSaveBox(
-                sharedViewModel,
-                generateImageViewModel,
-                onGenerateClick = {
-                    isLoading = 1 // Set loading state to 1 on click
-                }
-            )
+            GenerateAndSaveBox(sharedViewModel, generateImageViewModel, onGenerateClick = {
+                isLoading = 1 // Set loading state to 1 on click
+            })
             Spacer(modifier = Modifier.padding(top = 15.dp))
             SaveAndShareBox(sharedViewModel = sharedViewModel) // Pass the sharedViewModel here
         } else {
-            LoadingWrapper(
-                isLoading = 1,
-                modifier = Modifier,
-                onLoadingComplete = {
-                    isLoading = 0
-                }
-            )
+            // Show loading wrapper when loading
+            LoadingWrapper(isLoading = 1, modifier = Modifier, onLoadingComplete = {
+                isLoading = 0
+            })
         }
     }
 }
@@ -74,9 +68,8 @@ fun GenerateAndsave(
 
 @Composable
 fun LoadingWrapper(
-    isLoading: Int,
-    modifier: Modifier = Modifier,
-    onLoadingComplete: () -> Unit
+    isLoading: Int, modifier: Modifier = Modifier, onLoadingComplete: () -> Unit
+
 ) {
     var showProgress by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableStateOf(0) }
@@ -92,7 +85,7 @@ fun LoadingWrapper(
         if (isLoading == 1) {
             delay(30000L) // 30 seconds delay
             showProgress = false
-            onLoadingComplete() // Call the completion callback after 30 seconds
+            onLoadingComplete()
         }
     }
 
@@ -132,7 +125,8 @@ fun LoadingWrapper(
                     }, modifier = Modifier) {
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowLeft,
-                            contentDescription = "Left click", tint = Color.White
+                            contentDescription = "Left click",
+                            tint = Color.White
                         )
                     }
                     Text(
@@ -148,7 +142,8 @@ fun LoadingWrapper(
                     }, modifier = Modifier) {
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowRight,
-                            contentDescription = "Right click", tint = Color.White
+                            contentDescription = "Right click",
+                            tint = Color.White
                         )
                     }
                 }
@@ -157,8 +152,3 @@ fun LoadingWrapper(
         }
     }
 }
-
-
-
-
-

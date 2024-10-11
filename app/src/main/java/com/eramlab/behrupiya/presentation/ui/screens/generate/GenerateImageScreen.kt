@@ -1,23 +1,16 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate
 
-import android.graphics.Bitmap
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateCard
@@ -25,6 +18,7 @@ import com.eramlab.behrupiya.presentation.ui.screens.generate.component.Generate
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
 
+@SuppressLint("InvalidColorHexValue")
 @Composable
 fun GenerateImageScreen(
     generateImageViewModel: GenerateImageViewModel,
@@ -37,10 +31,11 @@ fun GenerateImageScreen(
     val items by generateImageViewModel.items.collectAsState()
     val isLoading by generateImageViewModel.isLoading.collectAsState()
 
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(0xC3202027))
+            .background(color = Color(0xFFF1D1D1D))
     )
     {
         GenerateAndSave(
@@ -55,7 +50,7 @@ fun GenerateImageScreen(
                 .fillMaxHeight()
                 .weight(0.75f),
 
-        )
+            )
         GenerateCard(
             sharedViewModel,
             items = items,
@@ -71,6 +66,4 @@ fun GenerateImageScreen(
         )
     }
 }
-
-
 

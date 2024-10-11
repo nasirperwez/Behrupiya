@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.TopBar
 import com.eramlab.behrupiya.presentation.ui.screens.settings.ComponentSetting.FollowDiscord
 import com.eramlab.behrupiya.presentation.ui.screens.settings.ComponentSetting.SocialMediaBox
@@ -23,11 +24,12 @@ fun SettingsScreen(
         properties = DialogProperties(
             dismissOnBackPress = true,
             dismissOnClickOutside = true,
-            usePlatformDefaultWidth = false,
+            usePlatformDefaultWidth = false
         )
     ) {
         Box(
-            modifier = Modifier.padding(bottom = 60.dp)
+            modifier = Modifier
+                .padding(bottom = 60.dp)
                 .fillMaxSize()
                 .background(color = Color(0xFF222121))
                 .clickable(onClick = onMDismiss)
@@ -52,10 +54,12 @@ fun SettingsScreen(
                         .fillMaxHeight()
                         .weight(0.1f)
                 )
-                SocialMediaBox(modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .weight(0.8f))
+                SocialMediaBox(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .weight(0.8f),
+                )
 
             }
 

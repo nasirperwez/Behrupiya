@@ -21,7 +21,7 @@ fun TryButton(modifier: Modifier) {
         Text(
             text = "Try out the trial for 3 days",
             modifier = Modifier.clickable { },
-            fontSize = 15.sp,
+            fontSize = 13.sp,
             style = androidx.compose.ui.text.TextStyle(
                 textDecoration = TextDecoration.Underline
             ),

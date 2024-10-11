@@ -1,29 +1,42 @@
 package com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.component
 
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Matrix
+import android.graphics.Paint
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
+import androidx.room.util.copy
 import com.eramlab.behrupiya.R
 import com.eramlab.behrupiya.utils.NavigationRoutes
 
 @Composable
-fun ImagePreviewCard(modifier: Modifier = Modifier, bitmap: Bitmap?) {
+fun ImagePreviewCard(
+    modifier: Modifier = Modifier,
+    bitmap: Bitmap?
+) {
+
     Card(
         modifier = modifier
             .padding(50.dp)
@@ -41,7 +54,7 @@ fun ImagePreviewCard(modifier: Modifier = Modifier, bitmap: Bitmap?) {
             )
         } else {
             Image(
-                painter = painterResource(id = R.drawable.aa), // replace with your default image
+                painter = painterResource(id = R.drawable.aa),
                 contentDescription = "Default Image",
                 modifier = Modifier
                     .fillMaxSize()

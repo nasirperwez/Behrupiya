@@ -3,8 +3,8 @@ package com.eramlab.behrupiya.presentation.ui.screens.generate.component.dialogC
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -19,17 +19,16 @@ fun CloseButton(
     onClose: () -> Unit,
 ) {
     Box(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxWidth(),
     ) {
-        Image(painter = painterResource(id = R.drawable.close_icn),
+        Image(
+            painter = painterResource(id = R.drawable.close_icn),
             contentDescription = null,
-            modifier = modifier
-                .fillMaxSize()
-                .padding(top = 10.dp, start = 320.dp)
+            modifier = Modifier
+                .padding(end = 20.dp, top = 5.dp)
                 .size(20.dp)
-              //  .align(Alignment.TopEnd)
+                .align(Alignment.TopEnd)
                 .clickable { onClose() }
-
         )
     }
 }

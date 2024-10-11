@@ -5,14 +5,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.dialogComponent.SheareandOtherApp
 
 @Composable
-fun SocialMedia(modifier: Modifier) {
+fun SocialMedia(modifier: Modifier,sharedViewModel: SharedViewModel) {
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        SheareandOtherApp(modifier)
+        SheareandOtherApp(modifier, sharedViewModel)
     }
 }
