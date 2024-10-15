@@ -1,6 +1,8 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -18,6 +20,7 @@ import com.eramlab.behrupiya.presentation.ui.screens.generate.component.Generate
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("InvalidColorHexValue")
 @Composable
 fun GenerateImageScreen(
@@ -30,7 +33,7 @@ fun GenerateImageScreen(
     val selectedCategory by generateImageViewModel.selectedCategory.collectAsState()
     val items by generateImageViewModel.items.collectAsState()
     val isLoading by generateImageViewModel.isLoading.collectAsState()
-
+    val isGenerating by generateImageViewModel.isGenerating.collectAsState()
 
     Column(
         modifier = Modifier
@@ -39,6 +42,7 @@ fun GenerateImageScreen(
     )
     {
         GenerateAndSave(
+            isGenerating,
             navController,
             generateImageViewModel,
             categories = categories,

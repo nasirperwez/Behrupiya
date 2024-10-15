@@ -1,6 +1,7 @@
 package com.eramlab.behrupiya.presentation
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import com.eramlab.behrupiya.presentation.ui.screens.generate.GenerateImageScree
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.HomeScreen
 import com.eramlab.behrupiya.utils.NavigationRoutes
 import androidx.compose.runtime.State
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.presentation.ui.onboarding.OnboardingScreen1
@@ -27,7 +29,9 @@ import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.Transpare
 import com.eramlab.behrupiya.presentation.ui.splash.SplashScreen
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 import com.eramlab.behrupiya.presentation.viewmodel.HomeViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @Composable
 fun ControlNav()
@@ -167,4 +171,24 @@ class SharedViewModel : ViewModel() {
     fun setCurrentItem(item: Item) {
         _currentItem.value = item
     }
+
+    // This function should be implemented in your SharedViewModel
+    suspend fun loadFullResolutionImage(path: String): Bitmap? = withContext(Dispatchers.IO) {
+        return@withContext try {
+            BitmapFactory.decodeFile(path)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    fun processImage(path: String, onComplete: (Bitmap?) -> Unit) {
+        viewModelScope.launch {
+            val bitmap = loadFullResolutionImage(path)
+            bitmap?.let { setBitmap(it) }
+            onComplete(bitmap)
+        }
+    }
+
 }
+

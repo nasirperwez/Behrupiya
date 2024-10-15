@@ -25,7 +25,10 @@ import androidx.compose.ui.unit.sp
 import com.eramlab.behrupiya.data.network.NetworkLayer
 import com.eramlab.behrupiya.presentation.ui.components.Animation
 import com.eramlab.behrupiya.presentation.ui.theme.raleway_regular
+import com.eramlab.behrupiya.utils.API_KEY
+import com.eramlab.behrupiya.utils.AppConstants
 import com.eramlab.behrupiya.utils.KeyStoreManager
+import com.eramlab.behrupiya.utils.getUniqueDeviceId
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -38,16 +41,36 @@ fun SplashScreen(
     val context = LocalContext.current
     val networkLayer = NetworkLayer()
     LaunchedEffect(Unit) {
-        val newkey = KeyStoreManager(context).getOrCreateSecretKey()
-        println(newkey)
-        val apiKey = networkLayer.registerUser(context,"D123467")
-        println("apiKey   = " + apiKey )
-        delay(5000L)
-        // Navigate to the OnboardingScreen
-        navController.navigate(NavigationRoutes.ONBOARDING1) {
-            // Clears the back stack so the user can't navigate back to the splash screen
-            popUpTo(NavigationRoutes.SPLASH) {
-                inclusive = true
+
+
+        API_KEY = KeyStoreManager(context).getApiKey() ?: ""
+        if (API_KEY == "") {
+            val UID =getUniqueDeviceId(context)
+            val apiKey = networkLayer.registerUser(context,UID)
+            println(apiKey)
+            if(apiKey != null) {
+                API_KEY = apiKey
+                navController.navigate(NavigationRoutes.ONBOARDING1) {
+                    // Clears the back stack so the user can't navigate back to the splash screen
+                    popUpTo(NavigationRoutes.SPLASH) {
+                        inclusive = true
+                    }
+                }
+            }
+            else{
+                //Show Errror MSG
+            }
+
+        }
+        else
+        {
+            delay(5000L)
+            // Navigate to the OnboardingScreen
+            navController.navigate(NavigationRoutes.HOME) {
+                // Clears the back stack so the user can't navigate back to the splash screen
+                popUpTo(NavigationRoutes.SPLASH) {
+                    inclusive = true
+                }
             }
         }
     }

@@ -38,9 +38,22 @@ fun TransparentDialog(
     var bitmap by remember { mutableStateOf<Bitmap?>(null) }
     val context = LocalContext.current
 
-    val cameraLauncher = rememberCameraLauncher(sharedViewModel, navController) { bitmap = it }
+//    val cameraLauncher = rememberCameraLauncher(sharedViewModel, navController) { bitmap = it }
+//    val permissionLauncher = rememberPermissionLauncher(sharedViewModel, context, cameraLauncher)
+    // Declare your cameraLauncher with updated logic to capture Bitmap
+    val cameraLauncher = rememberCameraLauncher(sharedViewModel, navController, context) { capturedBitmap ->
+        // Assign the captured Bitmap to your local variable or sharedViewModel
+        bitmap = capturedBitmap
+    }
+
+// Declare your permissionLauncher for requesting camera permission
     val permissionLauncher = rememberPermissionLauncher(sharedViewModel, context, cameraLauncher)
+
+
     val galleryLauncher = rememberGalleryLauncher(sharedViewModel, navController,context) { bitmap ->
+
+
+
         sharedViewModel.setBitmap(bitmap)
         navController.navigate(NavigationRoutes.GENERATE_SCREEN)
     }
@@ -86,7 +99,8 @@ fun TransparentDialog(
                                 context,
                                 Manifest.permission.CAMERA
                             ) == PackageManager.PERMISSION_GRANTED -> {
-                                cameraLauncher.launch()
+//                                cameraLauncher.launch()
+                                permissionLauncher.launch(Manifest.permission.CAMERA)
                             }
                             else -> {
                                 permissionLauncher.launch(Manifest.permission.CAMERA)

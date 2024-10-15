@@ -1,5 +1,7 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,13 +37,15 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun GenerateAndsave(
+    isGeneration:Int,
     sharedViewModel: SharedViewModel,
     generateImageViewModel: GenerateImageViewModel,
     modifier: Modifier = Modifier
 ) {
-    var isLoading by remember { mutableStateOf(0) } // Using 0 and 1 for loading state
+
 
     Column(
         modifier = modifier
@@ -50,16 +54,20 @@ fun GenerateAndsave(
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        if (isLoading == 0) {
-            GenerateAndSaveBox(sharedViewModel, generateImageViewModel, onGenerateClick = {
-                isLoading = 1 // Set loading state to 1 on click
+        val test = generateImageViewModel.getGenerating()
+        println(test)
+        if (isGeneration== 0 || isGeneration ==2) {
+            GenerateAndSaveBox(
+                isGeneration,
+                sharedViewModel, generateImageViewModel, onGenerateClick = {
+                generateImageViewModel.setGenerating(1) // Set loading state to 1 on click
             })
             Spacer(modifier = Modifier.padding(top = 15.dp))
             SaveAndShareBox(sharedViewModel = sharedViewModel) // Pass the sharedViewModel here
         } else {
             // Show loading wrapper when loading
-            LoadingWrapper(isLoading = 1, modifier = Modifier, onLoadingComplete = {
-                isLoading = 0
+            LoadingWrapper(isGeneration, modifier = Modifier, onLoadingComplete = {
+                generateImageViewModel.setGenerating(0)
             })
         }
     }
@@ -81,13 +89,13 @@ fun LoadingWrapper(
     )
 
 
-    LaunchedEffect(isLoading) {
-        if (isLoading == 1) {
-            delay(30000L) // 30 seconds delay
-            showProgress = false
-            onLoadingComplete()
-        }
-    }
+//    LaunchedEffect(isLoading) {
+//        if (isLoading == 1) {
+//            delay(30000L) // 30 seconds delay
+//            showProgress = false
+//            onLoadingComplete()
+//        }
+//    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         if (isLoading == 1) {

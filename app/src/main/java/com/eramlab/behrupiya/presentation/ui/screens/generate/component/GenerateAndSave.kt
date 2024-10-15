@@ -1,5 +1,7 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,8 +18,10 @@ import androidx.navigation.NavController
 import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun GenerateAndSave(
+    isGeneration: Int,
     navController: NavController,
     generateImageViewModel: GenerateImageViewModel,
     categories: List<String>,
@@ -62,6 +66,7 @@ fun GenerateAndSave(
             )
         Spacer(modifier = Modifier.padding(top = 30.dp))
         GenerateAndsave(
+            isGeneration,
             sharedViewModel,
             generateImageViewModel,
             modifier = Modifier

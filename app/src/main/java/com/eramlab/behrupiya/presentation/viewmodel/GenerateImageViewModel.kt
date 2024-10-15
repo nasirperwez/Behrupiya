@@ -1,12 +1,18 @@
 package com.eramlab.behrupiya.presentation.viewmodel
 
 import android.graphics.Bitmap
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eramlab.behrupiya.data.model.CategoryData
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.data.network.NetworkLayer
 import com.eramlab.behrupiya.presentation.SharedViewModel
+import com.eramlab.behrupiya.utils.API_KEY
+import com.eramlab.behrupiya.utils.AppConstants
+import com.eramlab.behrupiya.utils.KeyStoreManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,8 +26,9 @@ import java.io.File
 import java.io.FileOutputStream
 
 
-
 class GenerateImageViewModel() : ViewModel() {
+
+
 
     private lateinit var sharedViewModel: SharedViewModel
     private val _categories = MutableStateFlow<List<String>>(emptyList())
@@ -36,6 +43,9 @@ class GenerateImageViewModel() : ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    private val _isGenerating = MutableStateFlow(0)
+    val isGenerating: StateFlow<Int> = _isGenerating
+
 
     // Store the entire CategoryData list
     private val _categoryData = MutableStateFlow<List<CategoryData>>(emptyList())
@@ -44,6 +54,8 @@ class GenerateImageViewModel() : ViewModel() {
     val uiState: StateFlow<UiState> = _uiState
 
     private val networkLayer = NetworkLayer()
+
+
 
     fun setCategories(categories: List<String>) {
         _categories.value = categories
@@ -74,34 +86,33 @@ class GenerateImageViewModel() : ViewModel() {
     fun setLoading(isLoading: Boolean) {
         _isLoading.value = isLoading
     }
+    fun setGenerating(isGen: Int) {
+        _isGenerating.value = isGen
+    }
+
+    fun getGenerating() : Int{
+        return _isGenerating.value
+    }
+      @RequiresApi(Build.VERSION_CODES.O)
       fun onGenerateImage(bitmap: Bitmap, prompt: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            _uiState.value = UiState.Loading
-            try {
+           try {
                 val imageFile = createTempFileFromBitmap(bitmap)
-
-                val response: HttpResponse = networkLayer.generateimage(bitmap, prompt, imageFile)
-
-           // Delete the temporary file after it's been sent
+                println("Nasir = " + API_KEY)
+                val response = networkLayer.generateImagesev(API_KEY, prompt, imageFile)
                 imageFile.delete()
 
-                if (response.status.isSuccess()) {
-                    val responseBody = response.bodyAsText()
-                    val jsonObject = Json.decodeFromString<Map<String, String>>(responseBody)
-                    val imageUrl = jsonObject["image_url"]
-
-                    if (imageUrl != null) {
-                            _uiState.value = UiState.Success(imageUrl)
-                            val generatedbitmap = networkLayer.loadBitmapFromUrl(imageUrl)
-                            if (generatedbitmap != null) {
-                                sharedViewModel.setBitmap(generatedbitmap)
-                            }
-
-                    } else {
-                        _uiState.value = UiState.Error("No image URL in response")
+                if(response.success)
+                {
+                    val imgurl = response.data.image_url
+                    if (imgurl != null)
+                    {
+                        val generatedbitmap = networkLayer.loadBitmapFromUrl(imgurl)
+                        if (generatedbitmap != null) {
+                            sharedViewModel.setBitmap(generatedbitmap)
+                            setGenerating(2)
+                        }
                     }
-                } else {
-                    _uiState.value = UiState.Error("Server responded with ${response.status}")
                 }
             } catch (e: Exception) {
                 _uiState.value = UiState.Error(e.localizedMessage ?: "Unknown error occurred")

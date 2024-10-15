@@ -11,9 +11,9 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 import java.util.Base64
 import java.util.Random
-import android.content.Context
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
+import android.util.Log
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -21,58 +21,66 @@ import java.security.KeyStore
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
+import android.provider.Settings
+import java.util.UUID
+import android.content.Context
+import java.security.SecureRandom
 
-
-object CryptoUtils {
-    private val SHARED_SECRET_KEY = System.getenv("SHARED_SECRET_KEY").toByteArray()
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun encryptData(plainText: String): String {
-        val key = MessageDigest.getInstance("SHA-256").digest(SHARED_SECRET_KEY)
-        val iv = ByteArray(16)
-        Random().nextBytes(iv)
-
-        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
-        cipher.init(Cipher.ENCRYPT_MODE, SecretKeySpec(key, "AES"), IvParameterSpec(iv))
-
-        val encrypted = cipher.doFinal(plainText.toByteArray())
-        return Base64.getEncoder().encodeToString(iv + encrypted)
-    }
-}
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun generateEncryptedData(): String {
-    val timestamp = System.currentTimeMillis().toString()
-    return CryptoUtils.encryptData(timestamp)
+fun encryptData(plainText: String, sharedKey: String): String {
+    // Create SHA-256 hash of the shared key
+    val key = MessageDigest.getInstance("SHA-256").digest(sharedKey.toByteArray())
+
+    // Generate a random IV
+    val iv = ByteArray(16)
+    SecureRandom().nextBytes(iv)
+
+    // Initialize the cipher for AES in CBC mode with PKCS5 padding
+    val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+    val secretKey = SecretKeySpec(key, "AES")
+    val ivSpec = IvParameterSpec(iv)
+    cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec)
+
+    // Encrypt the plaintext
+    val encryptedData = cipher.doFinal(plainText.toByteArray(Charsets.UTF_8))
+
+    // Combine IV and ciphertext
+    val combinedData = iv + encryptedData
+    val test = Base64.getEncoder().encodeToString(combinedData)
+    println(test)
+    // Encode the combined data as Base64 without line breaks
+    return Base64.getEncoder().encodeToString(combinedData)
 }
 
 
+fun getUniqueDeviceId(context: Context): String {
+    val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+    return if (androidId == "9774d56d682e549c" || androidId.isEmpty()) {
+        // For Android < 2.2 or when ANDROID_ID returns the default reserved value
+        UUID.randomUUID().toString()
+    } else {
+        androidId
+    }
+}
 
 class KeyStoreManager(private val context: Context) {
-    private val keyStore = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }
-    private val keyAlias = "ApiKeyAlias"
+    private val sharedPreferences = context.getSharedPreferences("ApiKeyPrefs", Context.MODE_PRIVATE)
+    private val apiKeyKey = "api_key"
 
     fun storeApiKey(apiKey: String) {
-        val secretKey = getOrCreateSecretKey()
-        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey)
-        val encryptedApiKey = cipher.doFinal(apiKey.toByteArray(Charsets.UTF_8))
-        val sharedPrefs = context.getSharedPreferences("ApiKeyPrefs", Context.MODE_PRIVATE)
-        sharedPrefs.edit().putString("encrypted_api_key", encryptedApiKey.toString(Charsets.ISO_8859_1)).apply()
+        sharedPreferences.edit().putString(apiKeyKey, apiKey).apply()
+        Log.d("SimpleApiKeyManager", "API key stored successfully")
     }
 
-    fun getOrCreateSecretKey(): SecretKey {
-        return if (keyStore.containsAlias(keyAlias)) {
-            keyStore.getKey(keyAlias, null) as SecretKey
+    fun getApiKey(): String? {
+        val apiKey = sharedPreferences.getString(apiKeyKey, null)
+        if (apiKey == null) {
+            Log.d("SimpleApiKeyManager", "No API key found")
+
         } else {
-            val keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore")
-            val keyGenParameterSpec = KeyGenParameterSpec.Builder(keyAlias,
-                KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT)
-                .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                .build()
-            keyGenerator.init(keyGenParameterSpec)
-            keyGenerator.generateKey()
+            Log.d("SimpleApiKeyManager", "API key retrieved successfully")
         }
+        return apiKey
     }
 }
