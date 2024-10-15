@@ -13,13 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.eramlab.behrupiya.R
 
 @Composable
-fun Search(modifier: Modifier = Modifier)
-{
+fun Search(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -29,12 +30,12 @@ fun Search(modifier: Modifier = Modifier)
     ) {
         Row {
             Text(
-                text = "Indian ",
+                stringResource(id = R.string.Indian) + " ",
                 fontSize = 28.sp,
                 color = Color.White
             )
             Text(
-                text = "Ai Filters",
+                stringResource(id = R.string.Aifinter),
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White

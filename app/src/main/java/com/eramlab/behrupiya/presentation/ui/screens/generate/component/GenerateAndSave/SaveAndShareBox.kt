@@ -17,7 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import com.eramlab.behrupiya.R
 import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.dialogComponent.SaveAndShare
 
@@ -38,7 +40,7 @@ fun SaveAndShareBox(sharedViewModel: SharedViewModel) {
 
     ) {
         Text(
-            text = "Save / Share",
+            stringResource(id = R.string.SaveShareButton),
             modifier = Modifier.align(Alignment.Center),
             color = Color.White,
             fontSize = 15.sp

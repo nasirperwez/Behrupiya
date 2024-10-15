@@ -16,6 +16,7 @@ import kotlinx.coroutines.delay
 import androidx.compose.material3.Text
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.eramlab.behrupiya.presentation.ui.components.Animation
@@ -68,13 +69,13 @@ fun SplashScreen(
             Column(modifier = Modifier.align(Alignment.CenterHorizontally)) {
                 Row {
                     Text(
-                        text = "Sponsored & Promote by",
+                        stringResource(R.string.Promote) + " ",
                         fontFamily = raleway_regular,
                         color = Color(0xFF2563EB),
                         fontSize = 12.sp
                     )
                     Text(
-                        text = " ERAMLABS",
+                        stringResource(R.string.lab),
                         color = Color(0xFF00FFFC),
                         fontWeight = FontWeight.Bold,
                         fontSize = 13.sp,
@@ -82,7 +83,7 @@ fun SplashScreen(
                     )
                 }
                 Text(
-                    text = "copyright @Mobirize 2024",
+                    stringResource(R.string.year),
                     color = Color.White,
                     fontSize = 10.sp,
                     modifier = Modifier.align(Alignment.CenterHorizontally)

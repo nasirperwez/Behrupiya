@@ -30,8 +30,10 @@ import com.eramlab.behrupiya.presentation.ui.screens.generate.component.Generate
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 import androidx.compose.runtime.*
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.eramlab.behrupiya.R
 import kotlinx.coroutines.delay
 
 
@@ -106,7 +108,7 @@ fun LoadingWrapper(
                     Spacer(modifier = modifier.height(16.dp))
                 }
                 Text(
-                    text = "Useful TIps",
+                    stringResource(R.string.UsefulTips),
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     color = Color.White

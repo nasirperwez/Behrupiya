@@ -14,8 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.eramlab.behrupiya.R
 
 @Composable
 fun SaveNow(modifier: Modifier) {
@@ -33,7 +35,7 @@ fun SaveNow(modifier: Modifier) {
                 .width(250.dp)
                 .background(blueGradient, shape = RoundedCornerShape(30.dp))
         ) {
-            Text(text = "Save Now", fontSize = 15.sp, color = Color.White)
+            Text(stringResource(id = R.string.SaveButton), fontSize = 15.sp, color = Color.White)
         }
     }
 }

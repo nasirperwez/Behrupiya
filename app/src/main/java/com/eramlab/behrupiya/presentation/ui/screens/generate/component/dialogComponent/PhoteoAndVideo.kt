@@ -15,6 +15,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.eramlab.behrupiya.R
 
 @Composable
 fun PhoteoAndVideo(modifier: Modifier) {
@@ -37,7 +39,7 @@ fun PhoteoAndVideo(modifier: Modifier) {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Video",
+               stringResource(id = R.string.Video),
                 color = if (selectedBox == "video") Color.Blue else Color(0xEBB5AEC9)
             )
         }
@@ -54,7 +56,7 @@ fun PhoteoAndVideo(modifier: Modifier) {
             contentAlignment = Alignment.Center // Center the text
         ) {
             Text(
-                text = "Photo",
+                stringResource(id = R.string.photo),
                 color = if (selectedBox == "photo") Color.Blue else Color(0xEBB5AEC9)
             )
         }

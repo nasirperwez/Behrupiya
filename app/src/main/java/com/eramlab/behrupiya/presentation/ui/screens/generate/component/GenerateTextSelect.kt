@@ -34,8 +34,6 @@ fun GenerateTextSelect(
 
 ) {
     var expandedCulture by remember { mutableStateOf(false) }
-
-    val options = listOf("Option 1", "Option 2", "Option 3")
     var selectedCulture by remember { mutableStateOf("") }
 
     val countryIcon =

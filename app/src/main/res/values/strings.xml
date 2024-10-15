@@ -3,9 +3,40 @@
     // Commman
     <string name="app_name">Behrupiya</string>
 
+    // Splash Screen
+    <string name="lab">ERAMLABS</string>
+    <string name="Promote">Sponsored &amp; Promote by</string>
+    <string name="year">copyright @Mobirize 2024</string>
 
+    //Onboarding Screen
+    <string name="skip">Skip>></string>
+    <string name="Generate">Generate New look</string>
+    <string name="from">from a</string>
+    <string name="single">single Selfie</string>
+    <string name="text">Anything. Any detail. Add your dreams lorem ipsum is simple use for dummy text purposes.</string>
+    <string name="NextButton">Next</string>
+    <string name="continuing">by continuing, you accept</string>
+    <string name="Terms">our Terms of Use and our</string>
+    <string name="Privacy">Privacy Policy</string>
+    <string name="Finish">Finish</string>
 
+    //Home Screen
+        //Top Bar
+    <string name="proButton">Ger Pro</string>
+        //SearchAndFilter
+            //Search
+    <string name="Indian">Indian</string>
+    <string name="Aifinter">Ai Filters</string>
 
-
+    //Generate Screen
+    <string name="UsefulTips">Useful Tips</string>
+    <string name="GenerateButton">Generate</string>
+    <string name="SaveShareButton">Save / Share</string>
+    <string name="Video">Video</string>
+    <string name="photo">photo</string>
+    <string name="Watermark">Watermark</string>
+    <string name="HdQuality">HD Quality</string>
+    <string name="SaveButton">Save Now</string>
+    <string name="try3Day">Try out the trial for 3 days</string>
 
 </resources>
