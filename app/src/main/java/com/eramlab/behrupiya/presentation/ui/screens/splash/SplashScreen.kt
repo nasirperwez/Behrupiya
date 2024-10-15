@@ -1,5 +1,8 @@
 package com.eramlab.behrupiya.presentation.ui.splash
 
+import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,19 +19,33 @@ import kotlinx.coroutines.delay
 import androidx.compose.material3.Text
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+<<<<<<< HEAD
 import androidx.compose.ui.res.stringResource
+=======
+import androidx.compose.ui.platform.LocalContext
+>>>>>>> origin/Abhi_ServerChange
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.eramlab.behrupiya.data.network.NetworkLayer
 import com.eramlab.behrupiya.presentation.ui.components.Animation
 import com.eramlab.behrupiya.presentation.ui.theme.raleway_regular
+import com.eramlab.behrupiya.utils.KeyStoreManager
 
+
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SplashScreen(
     navController: NavController,
     //  splashViewModel: SplashViewModel = viewModel()
 ) {
     // Delay and navigate to the OnboardingScreen
+    val context = LocalContext.current
+    val networkLayer = NetworkLayer()
     LaunchedEffect(Unit) {
+        val newkey = KeyStoreManager(context).getOrCreateSecretKey()
+        println(newkey)
+        val apiKey = networkLayer.registerUser(context,"D123467")
+        println("apiKey   = " + apiKey )
         delay(5000L)
         // Navigate to the OnboardingScreen
         navController.navigate(NavigationRoutes.ONBOARDING1) {
