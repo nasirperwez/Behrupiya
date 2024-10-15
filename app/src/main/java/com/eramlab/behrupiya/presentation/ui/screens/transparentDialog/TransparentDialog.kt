@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import androidx.activity.result.launch
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 
 
@@ -35,6 +34,8 @@ fun TransparentDialog(
     navController: NavController,
     onDismiss: () -> Unit
 ) {
+    var clickedButtonIndex by remember { mutableStateOf(-1) }
+
     var bitmap by remember { mutableStateOf<Bitmap?>(null) }
     val context = LocalContext.current
 
@@ -48,16 +49,12 @@ fun TransparentDialog(
 
 // Declare your permissionLauncher for requesting camera permission
     val permissionLauncher = rememberPermissionLauncher(sharedViewModel, context, cameraLauncher)
-
-
-    val galleryLauncher = rememberGalleryLauncher(sharedViewModel, navController,context) { bitmap ->
-
-
-
-        sharedViewModel.setBitmap(bitmap)
-        navController.navigate(NavigationRoutes.GENERATE_SCREEN)
-    }
-
+    val galleryLauncher =
+        rememberGalleryLauncher(sharedViewModel, navController, context) { bitmap ->
+            sharedViewModel.setBitmap(bitmap)
+            navController.navigate(NavigationRoutes.GENERATE_SCREEN)
+        }
+    val buttonWidth = 280.dp
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(
@@ -70,30 +67,33 @@ fun TransparentDialog(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0x80000000))
-                //.clickable(onClick = onDismiss)
+            //.clickable(onClick = onDismiss)
         ) {
 
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.Center
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 ImagePreviewCard(
                     modifier = Modifier
+                        .padding(start = 10.dp)
                         .weight(0.6f)
                         .fillMaxWidth(),
                     bitmap = bitmap
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.padding(top = 20.dp))
 
                 ActionButton(modifier = Modifier
-                    .padding(2.dp)
-                    .fillMaxWidth()
-                    .weight(.2f),
+                    .padding(10.dp) // Reduced padding
+                    .width(buttonWidth)
+                    .weight(0.125f),
                     text = "Take a photo",
-                    iconResId = R.drawable.takepic_icn,
+                    iconResId = if (clickedButtonIndex == 1) R.drawable.takepic_icn_s else R.drawable.takepic_icn,
+                    isSelected = clickedButtonIndex == 1,
                     onClick = {
+                        clickedButtonIndex = 1
                         when {
                             ContextCompat.checkSelfPermission(
                                 context,
@@ -108,19 +108,21 @@ fun TransparentDialog(
                         }
                     }
                 )
-                Spacer(modifier = Modifier.padding(top = 22.dp))
 
                 ActionButton(
                     modifier = Modifier
-                        .padding(2.dp)
-                        .fillMaxWidth()
-                        .weight(0.2f),
+                        .padding(10.dp) // Reduced padding
+                        .width(buttonWidth)
+                        .weight(0.125f),
                     text = "Choose from gallery",
-                    iconResId = R.drawable.chooseg_icn,
+                    iconResId = if (clickedButtonIndex == 2) R.drawable.chooseg_icn_s else R.drawable.chooseg_icn,
+                    isSelected = clickedButtonIndex == 2,
                     onClick = {
-                        galleryLauncher.launch("image/*")
-                    }
+                        clickedButtonIndex = 2
+                       galleryLauncher.launch("image/*")
+                    },
                 )
+                Spacer(modifier = Modifier.padding(top = 30.dp))
             }
             CloseButton(
                 navController,

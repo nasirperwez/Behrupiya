@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.eramlab.behrupiya.R
@@ -47,7 +48,7 @@ fun OnboardingHeader3(navController: NavController, modifier: Modifier) {
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                text = "Skip>>",
+                stringResource(id = R.string.skip),
                 modifier = Modifier
                     .padding(end = 20.dp)
                     .align(Alignment.CenterVertically)

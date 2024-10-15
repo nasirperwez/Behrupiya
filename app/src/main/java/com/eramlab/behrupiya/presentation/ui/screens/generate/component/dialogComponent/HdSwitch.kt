@@ -11,8 +11,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.eramlab.behrupiya.R
 
 @Composable
 fun HdSwitch(modifier: Modifier = Modifier) {
@@ -32,7 +34,7 @@ fun HdSwitch(modifier: Modifier = Modifier) {
             modifier = Modifier.weight(1f)
         ) {
             Text(
-                text = "Watermark",
+                stringResource(R.string.Watermark),
                 color = Color.White,
                 fontSize = 13.sp,
                 modifier = Modifier.padding(end = 8.dp)
@@ -54,7 +56,7 @@ fun HdSwitch(modifier: Modifier = Modifier) {
             modifier = Modifier.weight(1f)
         ) {
             Text(
-                text = "HD Quality",
+                stringResource(id = R.string.HdQuality),
                 color = Color.White,
                 fontSize = 13.sp,
                 modifier = Modifier.padding(end = 8.dp)

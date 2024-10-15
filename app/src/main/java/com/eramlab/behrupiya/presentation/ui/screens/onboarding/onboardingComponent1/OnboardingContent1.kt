@@ -18,10 +18,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.eramlab.behrupiya.R
 import com.eramlab.behrupiya.presentation.ui.screens.onboarding.Components.TermsAndConditionsText1
 import com.eramlab.behrupiya.utils.NavigationRoutes
 
@@ -38,7 +40,7 @@ fun OnboardingContent1(navController: NavController, modifier: Modifier) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Generate New look",
+            stringResource(id = R.string.Generate),
             color = Color(0xFFD4E49A),
             fontSize = 34.sp
         )
@@ -46,19 +48,20 @@ fun OnboardingContent1(navController: NavController, modifier: Modifier) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "from a ",
+                stringResource(id = R.string.from) + " ",
                 color = Color(0xFFD4E49A),
                 fontSize = 34.sp
             )
             Text(
-                text = "single Selfie",
+                stringResource(id = R.string.single),
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF00F6EE),
                 fontSize = 34.sp
             )
         }
         Text(
-            text = "Anything. Any detail. Add your dreams lorem ipsum is simple use for dummy text purposes.",
+
+            stringResource(id = R.string.text),
             color = Color.White,
             fontSize = 18.sp,
             modifier = Modifier.fillMaxWidth(0.65f)
@@ -79,7 +82,12 @@ fun OnboardingContent1(navController: NavController, modifier: Modifier) {
                 .height(50.dp)
                 .background(blueGradient, shape = RoundedCornerShape(30.dp))
         ) {
-            Text(text = "Next", fontSize = 22.sp, color = Color.White, fontWeight = FontWeight.Bold)
+            Text(
+                stringResource(id = R.string.NextButton),
+                fontSize = 22.sp,
+                color = Color.White,
+                fontWeight = FontWeight.Bold
+            )
         }
         Spacer(modifier = Modifier.height(18.dp))
         TermsAndConditionsText1()

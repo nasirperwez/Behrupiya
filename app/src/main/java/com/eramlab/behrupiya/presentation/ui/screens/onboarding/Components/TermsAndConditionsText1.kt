@@ -9,9 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.eramlab.behrupiya.R
 
 @Composable
 fun TermsAndConditionsText1() {
@@ -19,7 +21,7 @@ fun TermsAndConditionsText1() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "by continuing, you accept",
+            stringResource(id = R.string.continuing),
             color = Color.White,
             fontSize = 14.sp
         )
@@ -28,12 +30,12 @@ fun TermsAndConditionsText1() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "our Terms of Use and our ",
+                stringResource(id = R.string.Terms) + " ",
                 color = Color.White,
                 fontSize = 14.sp
             )
             Text(
-                text = "Privacy Policy",
+                stringResource(id = R.string.Privacy),
                 modifier = Modifier
                     .clickable { },
                 color = Color.White,

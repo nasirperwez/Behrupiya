@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -44,7 +45,11 @@ fun TopBar(modifier: Modifier = Modifier) {
                 .size(width = 100.dp, height = 33.dp)
                 .background(blueGradient, shape = RoundedCornerShape(30.dp))
         ) {
-            Text("Get Pro", fontSize = 15.sp, fontWeight = FontWeight.Bold)
+            Text(
+                stringResource(id = R.string.proButton),
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }

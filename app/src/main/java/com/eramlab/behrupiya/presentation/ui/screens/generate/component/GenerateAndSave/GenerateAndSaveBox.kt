@@ -16,6 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.eramlab.behrupiya.R
@@ -63,7 +64,8 @@ fun GenerateAndSaveBox(
                     )
                     .background(blueGradient)
                     .height(50.dp)
-                    .fillMaxWidth(0.70f)
+                    .fillMaxWidth(0.70f)        
+
                     .clickable { sharedViewModel.bitmap_set?.let {
                         generateImageViewModel.setGenerating(1)
                         val prompt = sharedViewModel.getCurrentItem()?.prompt
@@ -71,13 +73,11 @@ fun GenerateAndSaveBox(
                             generateImageViewModel.onGenerateImage(
                                 it,prompt)
                         }
-                        onGenerateClick()
-                    } }
+                    }
 
             )
             {
                 Text(
-
                     text = text,
                     modifier = Modifier.align(Alignment.Center),
                     color = Color.White,
