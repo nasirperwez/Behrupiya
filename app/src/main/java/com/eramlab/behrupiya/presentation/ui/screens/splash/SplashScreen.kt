@@ -19,11 +19,9 @@ import kotlinx.coroutines.delay
 import androidx.compose.material3.Text
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-<<<<<<< HEAD
 import androidx.compose.ui.res.stringResource
-=======
+
 import androidx.compose.ui.platform.LocalContext
->>>>>>> origin/Abhi_ServerChange
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.eramlab.behrupiya.data.network.NetworkLayer

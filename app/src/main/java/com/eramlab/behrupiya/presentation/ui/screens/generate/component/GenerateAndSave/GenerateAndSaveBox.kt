@@ -71,8 +71,10 @@ fun GenerateAndSaveBox(
                         val prompt = sharedViewModel.getCurrentItem()?.prompt
                         if (prompt != null) {
                             generateImageViewModel.onGenerateImage(
-                                it,prompt)
+                                it, prompt
+                            )
                         }
+                    }
                     }
 
             )
