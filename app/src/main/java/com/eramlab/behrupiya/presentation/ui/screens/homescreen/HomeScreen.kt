@@ -1,4 +1,6 @@
 package com.eramlab.behrupiya.presentation.ui.screens.homescreen
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,6 +19,7 @@ import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.Featur
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.SearchAndFilter
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.TopBar
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HomeScreen(
     sharedViewModel: SharedViewModel,
@@ -27,6 +30,7 @@ fun HomeScreen(
     val selectedCategory by homeViewModel.selectedCategory.collectAsState()
     val items by homeViewModel.items.collectAsState()
     val isLoading by homeViewModel.isLoading.collectAsState()
+
 
     LaunchedEffect(Unit) {
         homeViewModel.fetchData()

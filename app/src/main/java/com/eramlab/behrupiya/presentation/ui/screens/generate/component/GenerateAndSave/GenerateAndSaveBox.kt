@@ -1,6 +1,8 @@
 package com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateAndSave
 
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,8 +24,10 @@ import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun GenerateAndSaveBox(
+    isRegenerate : Int,
     sharedViewModel: SharedViewModel,
     generateImageViewModel: GenerateImageViewModel,
     onGenerateClick:  () -> Unit,
@@ -31,6 +35,11 @@ fun GenerateAndSaveBox(
     val blueGradient = Brush.verticalGradient(
         colors = listOf(Color(0xFF01CEF0), Color(0xFF0357C0)) // Two colors for the gradient
     )
+    var text ="Generate"
+    if(isRegenerate==2)
+            text = "reGenerate"
+
+
 
     Box(
         Modifier
@@ -55,23 +64,21 @@ fun GenerateAndSaveBox(
                     )
                     .background(blueGradient)
                     .height(50.dp)
-                    .fillMaxWidth(0.70f)
-                    .clickable {
-                        sharedViewModel.bitmap_set?.let {
-                            val prompt = sharedViewModel.getCurrentItem()?.prompt
-                            if (prompt != null) {
-                                generateImageViewModel.onGenerateImage(
-                                    it, prompt
-                                )
-                            }
-                            onGenerateClick()
+                    .fillMaxWidth(0.70f)        
+
+                    .clickable { sharedViewModel.bitmap_set?.let {
+                        generateImageViewModel.setGenerating(1)
+                        val prompt = sharedViewModel.getCurrentItem()?.prompt
+                        if (prompt != null) {
+                            generateImageViewModel.onGenerateImage(
+                                it,prompt)
                         }
                     }
 
             )
             {
                 Text(
-                    stringResource(id = R.string.GenerateButton),
+                    text = text,
                     modifier = Modifier.align(Alignment.Center),
                     color = Color.White,
                     fontSize = 15.sp
