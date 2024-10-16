@@ -40,20 +40,43 @@ fun ControlNav()
     val sharedViewModel: SharedViewModel = viewModel()
     val generateImageViewModel: GenerateImageViewModel = viewModel()
     val homeViewModel: HomeViewModel = viewModel()
+
     generateImageViewModel.setSharedViewModel(sharedViewModel)
-    LaunchedEffect(homeViewModel) {
+    LaunchedEffect(homeViewModel , sharedViewModel.isFromHeader) {
         launch {
-            homeViewModel.categories.collect { categories ->
+//            homeViewModel.categories.collect { categories ->
+//                generateImageViewModel.setCategories(categories)
+//            }
+            if (sharedViewModel.isFromHeader) {
+                homeViewModel.categoriesHeader
+            } else {
+                homeViewModel.categories
+            }.collect { categories ->
                 generateImageViewModel.setCategories(categories)
             }
         }
         launch {
-            homeViewModel.selectedCategory.collect { category ->
+//            homeViewModel.selectedCategory.collect { category ->
+//                generateImageViewModel.setSelectedCategory(category)
+//            }
+
+            if (sharedViewModel.isFromHeader) {
+                homeViewModel.selectedCategoryHeader
+            } else {
+                homeViewModel.selectedCategory
+            }.collect { category ->
                 generateImageViewModel.setSelectedCategory(category)
             }
         }
         launch {
-            homeViewModel.items.collect { items ->
+//            homeViewModel.items.collect { items ->
+//                generateImageViewModel.setItems(items)
+//            }
+            if (sharedViewModel.isFromHeader) {
+                homeViewModel.itemsHeader
+            } else {
+                homeViewModel.items
+            }.collect { items ->
                 generateImageViewModel.setItems(items)
             }
         }
@@ -64,11 +87,54 @@ fun ControlNav()
         }
 
         launch {
-            homeViewModel.categoryData.collect { categoryData ->
+//            homeViewModel.categoryData.collect { categoryData ->
+//                generateImageViewModel.setCategoryData(categoryData)
+//            }
+
+            if (sharedViewModel.isFromHeader) {
+                homeViewModel.categoryDataHeader
+            } else {
+                homeViewModel.categoryData
+            }.collect { categoryData ->
                 generateImageViewModel.setCategoryData(categoryData)
             }
         }
     }
+
+
+
+    // set generate screen data from Hadder
+
+//    LaunchedEffect(homeViewModel) {
+//        launch {
+//            homeViewModel.categoriesHeader.collect { categoriesHeader ->
+//                generateImageViewModel.setCategories(categoriesHeader)
+//            }
+//        }
+//        launch {
+//            homeViewModel.selectedCategoryHeader.collect { categoryHeader ->
+//                generateImageViewModel.setSelectedCategory(categoryHeader)
+//            }
+//        }
+//        launch {
+//            homeViewModel.itemsHeader.collect { itemsHeader ->
+//                generateImageViewModel.setItems(itemsHeader)
+//            }
+//        }
+//        launch {
+//            homeViewModel.isLoading.collect { isLoading ->
+//                generateImageViewModel.setLoading(isLoading)
+//            }
+//        }
+//
+//        launch {
+//            homeViewModel.categoryDataHeader.collect { categoryDataHeader ->
+//                generateImageViewModel.setCategoryData(categoryDataHeader)
+//            }
+//        }
+//    }
+
+
 
     // Scaffold with NavHost
         Scaffold(
@@ -119,47 +185,15 @@ fun ControlNav()
 }
 
 
-
-
-//class SharedViewModel : ViewModel() {
-//    private val _bitmap = mutableStateOf<Bitmap?>(null)
-//    val bitmap: State<Bitmap?> = _bitmap
-//    var bitmap_set= _bitmap.value
-//
-//    val cItem - Item
-//
-//
-//    private val _currentItem = mutableStateOf<Item?>(null)
-//    val currentItem: State<Item?> = _currentItem
-//
-//
-//    fun setBitmap(newBitmap: Bitmap) {
-//        _bitmap.value = newBitmap
-//        bitmap_set = newBitmap
-//    }
-//
-//    fun setCurrentitem(currentItem: Item) {
-//        currentItem = currentItem
-//
-//    }
-//}
-
 class SharedViewModel : ViewModel() {
     private val _bitmap = mutableStateOf<Bitmap?>(null)
     val bitmap: State<Bitmap?> = _bitmap
     var bitmap_set = _bitmap.value
+    var isFromHeader: Boolean = false
 
-    val cItem: Item? = null
 
     private val _currentItem = mutableStateOf<Item?>(null)
-    val currentItem: State<Item?> = _currentItem
-
-    // Approach 1: Kotlin property (recommended)
-    val currentItemValue: Item?
-        get() = _currentItem.value
-
-    // Approach 2: Traditional getter method
-    fun getCurrentItem(): Item? {
+      fun getCurrentItem(): Item? {
         return _currentItem.value
     }
 
@@ -170,24 +204,6 @@ class SharedViewModel : ViewModel() {
 
     fun setCurrentItem(item: Item) {
         _currentItem.value = item
-    }
-
-    // This function should be implemented in your SharedViewModel
-    suspend fun loadFullResolutionImage(path: String): Bitmap? = withContext(Dispatchers.IO) {
-        return@withContext try {
-            BitmapFactory.decodeFile(path)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            null
-        }
-    }
-
-    fun processImage(path: String, onComplete: (Bitmap?) -> Unit) {
-        viewModelScope.launch {
-            val bitmap = loadFullResolutionImage(path)
-            bitmap?.let { setBitmap(it) }
-            onComplete(bitmap)
-        }
     }
 
 }

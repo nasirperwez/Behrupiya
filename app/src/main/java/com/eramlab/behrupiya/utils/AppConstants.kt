@@ -10,7 +10,9 @@ object AppConstants {
     const val BASE_URL_SERVER = "http://13.201.3.28"
 //    const val BASE_URL_SERVER = "http://122.160.116.97:8090"
 //    const val BASE_URL = "http://122.160.116.97:8080"
-    const val BASE_URL = "https://behrupiya.s3.ap-south-1.amazonaws.com/footers/"
+    const val BASE_URL = "https://behrupiya.s3.ap-south-1.amazonaws.com/"
+//    const val BASE_URL = "https://behrupiya.s3.ap-south-1.amazonaws.com/footers/"
+
     const val IMG_BASE_ENDPOINT = "$BASE_URL"
     const val JSON_DATA_ENDPOINT = "$BASE_URL/json-data/"
     const val GENERATE_IMAGE_ENDPOINT = "$BASE_URL/generate-image/"

@@ -13,5 +13,5 @@ class Repository(private val context: Context , private val networkLayer: Networ
     suspend fun generateImage(apiKey: String,prompt: String, imagePath: File) =
         networkLayer.generateImagesev(apiKey,  prompt, imagePath)
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend fun getPrompts(apiKey: String) = networkLayer.getPrompt()
+    suspend fun getPrompts(apiKey: String) = networkLayer.getFooter()
 }

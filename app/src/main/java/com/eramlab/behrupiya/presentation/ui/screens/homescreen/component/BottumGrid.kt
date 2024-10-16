@@ -49,6 +49,7 @@ fun ItemCard(
             modifier = Modifier.fillMaxSize(),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
             onClick = {
+                sharedViewModel.isFromHeader = false
                 sharedViewModel.setCurrentItem(item)
                 navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) {
                     popUpTo(NavigationRoutes.HOME) { inclusive = true }
