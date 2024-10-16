@@ -8,13 +8,17 @@ import androidx.compose.ui.res.painterResource
 import com.eramlab.behrupiya.R
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.navigation.NavController
+import com.eramlab.behrupiya.utils.NavigationRoutes
 
 @Composable
-fun imageIcon(modifier: Modifier) {
+fun imageIcon(navController: NavController, modifier: Modifier) {
     IconButton(
-        onClick = { },
+        onClick = { navController.navigate(NavigationRoutes.HISTORY) },
         modifier = modifier
             .fillMaxHeight()
+            
     ) {
         Image(
             painter = painterResource(id = R.drawable.gallery_icn),

@@ -12,14 +12,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.utils.NavigationRoutes
 
 @Composable
-fun HistoryTopBar(modifier: Modifier = Modifier) {
+fun HistoryTopBar(navController: NavHostController, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxSize(),
@@ -30,7 +31,7 @@ fun HistoryTopBar(modifier: Modifier = Modifier) {
             painter = painterResource(id = R.drawable.back_icn),
             contentDescription = null,
             modifier = Modifier
-                .clickable { }
+                .clickable {navController.navigate(NavigationRoutes.GENERATE_SCREEN) }
                 .padding(start = 20.dp) // Adding padding to the image for spacing
         )
 
