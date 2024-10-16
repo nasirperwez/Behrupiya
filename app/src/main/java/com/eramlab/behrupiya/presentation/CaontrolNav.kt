@@ -31,6 +31,7 @@ import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.Transpare
 
 import com.eramlab.behrupiya.presentation.ui.splash.SplashScreen
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
+import com.eramlab.behrupiya.presentation.viewmodel.HistoryImageViewModel
 import com.eramlab.behrupiya.presentation.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
 
@@ -41,6 +42,7 @@ fun ControlNav()
     val sharedViewModel: SharedViewModel = viewModel()
     val generateImageViewModel: GenerateImageViewModel = viewModel()
     val homeViewModel: HomeViewModel = viewModel()
+    val historyImageViewModel: HistoryImageViewModel = viewModel()
 
     generateImageViewModel.setSharedViewModel(sharedViewModel)
     LaunchedEffect(homeViewModel , sharedViewModel.isFromHeader) {
@@ -173,7 +175,7 @@ fun ControlNav()
                     }
                     //History screen
                     composable(route = NavigationRoutes.HISTORY) {
-                        HistoryScreen(homeViewModel = homeViewModel,sharedViewModel = sharedViewModel,navController = navController)
+                        HistoryScreen(historyImageViewModel = historyImageViewModel ,homeViewModel = homeViewModel,sharedViewModel = sharedViewModel,navController = navController )
                     }
 
                     composable(route = NavigationRoutes.GENERATE_SCREEN) {

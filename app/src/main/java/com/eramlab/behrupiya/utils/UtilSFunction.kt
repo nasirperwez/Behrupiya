@@ -64,6 +64,10 @@ fun getUniqueDeviceId(context: Context): String {
     }
 }
 
+
+
+
+
 class KeyStoreManager(private val context: Context) {
     private val sharedPreferences = context.getSharedPreferences("ApiKeyPrefs", Context.MODE_PRIVATE)
     private val apiKeyKey = "api_key"
