@@ -46,7 +46,8 @@ fun SheareandOtherApp(modifier: Modifier, sharedViewModel: SharedViewModel) {
                             ContextCompat.startActivity(context, chooser, null)
                         }
                     }
-                })
+                }
+        )
         Image(painter = painterResource(id = R.drawable.social_facebook),
             contentDescription = null,
             modifier = Modifier
