@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.eramlab.behrupiya.R
@@ -39,7 +41,8 @@ fun HistoryTopBar(modifier: Modifier = Modifier) {
         Text(
             text = "History",
             color = Color.White,
-            fontSize = 20.sp
+            fontSize = 25.sp,
+            fontWeight = FontWeight.Black
         )
 
         // Spacer to push the second image to the end

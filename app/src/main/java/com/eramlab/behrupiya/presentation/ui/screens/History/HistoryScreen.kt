@@ -16,7 +16,7 @@ fun HistoryScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.Black)
+            .background(color = Color(0xF2242323))
     ) {
         HistoryTopBar(
             modifier = Modifier

@@ -45,7 +45,7 @@ fun HistoryImage(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp))
+            .clip(RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp))
             .background(color = Color(0xF23C3B3B))
             .padding(top = 40.dp)
     ) {
