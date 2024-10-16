@@ -17,6 +17,10 @@ import com.eramlab.behrupiya.presentation.ui.screens.generate.GenerateImageScree
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.HomeScreen
 import com.eramlab.behrupiya.utils.NavigationRoutes
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewModelScope
+
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.eramlab.behrupiya.data.model.Item
 import com.eramlab.behrupiya.presentation.ui.onboarding.OnboardingScreen1
@@ -190,7 +194,7 @@ class SharedViewModel : ViewModel() {
     private val _bitmap = mutableStateOf<Bitmap?>(null)
     val bitmap: State<Bitmap?> = _bitmap
     var bitmap_set = _bitmap.value
-    var isFromHeader: Boolean = false
+    var isFromHeader by mutableStateOf(false)
 
 
     private val _currentItem = mutableStateOf<Item?>(null)
