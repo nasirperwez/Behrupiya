@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.eramlab.behrupiya.presentation.ui.screens.History.Compnent.HistoryImage
 import com.eramlab.behrupiya.presentation.ui.screens.History.Compnent.HistoryTopBar
+import com.eramlab.behrupiya.presentation.ui.screens.History.Component.HistoryImage
 
 @Composable
 fun HistoryScreen() {
