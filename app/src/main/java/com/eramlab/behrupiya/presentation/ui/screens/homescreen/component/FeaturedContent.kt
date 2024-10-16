@@ -4,9 +4,12 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,11 +19,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.data.model.Item
+import com.eramlab.behrupiya.presentation.SharedViewModel
+import com.eramlab.behrupiya.presentation.viewmodel.HomeViewModel
+import com.eramlab.behrupiya.utils.NavigationRoutes
 import kotlinx.coroutines.delay
 
 @Composable
-fun FeaturedContent(modifier: Modifier = Modifier) {
+fun FeaturedContent(
+    sharedViewModel: SharedViewModel,
+    navController: NavController,
+    homeViewModel: HomeViewModel,
+    itemsHader: List<Item>,
+    modifier: Modifier = Modifier,
+    ) {
     Spacer(modifier = Modifier.padding(top = 5.dp))
     LazyRow(
         modifier = modifier,
@@ -44,7 +58,16 @@ fun FeaturedContent(modifier: Modifier = Modifier) {
 
                 ),
                 backgroundPainter = painterResource(id = R.drawable.digital),
-                startDelay = 0
+                startDelay = 0,
+                onClick = {
+                    sharedViewModel.isFromHeader = true
+                    homeViewModel.selectCategoryHeader("Digital Art")
+                    sharedViewModel.setCurrentItem(itemsHader.get(0))
+                    navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) {
+                        popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                    }
+                }
+
             )
             Spacer(modifier = Modifier.padding(start = 10.dp))
 
@@ -63,7 +86,15 @@ fun FeaturedContent(modifier: Modifier = Modifier) {
                     painterResource(id = R.drawable.output_9)
                 ),
                 backgroundPainter = painterResource(id = R.drawable.book),
-                startDelay = 500
+                startDelay = 500,
+                onClick = {
+                    sharedViewModel.isFromHeader = true
+                    homeViewModel.selectCategoryHeader("Comic Book")
+                    sharedViewModel.setCurrentItem(itemsHader.get(1))
+                    navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) {
+                        popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                    }
+                }
             )
             Spacer(modifier = Modifier.padding(start = 10.dp))
 
@@ -83,7 +114,16 @@ fun FeaturedContent(modifier: Modifier = Modifier) {
                     painterResource(id = R.drawable.output_71),
                 ),
                 backgroundPainter = painterResource(id = R.drawable.pencilart),
-                startDelay = 150
+                startDelay = 150,
+                onClick = {
+                    sharedViewModel.isFromHeader = true
+
+                    homeViewModel.selectCategoryHeader("Pencil Art")
+                    sharedViewModel.setCurrentItem(itemsHader.get(2))
+                    navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) {
+                        popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                    }
+                }
             )
             Spacer(modifier = Modifier.padding(start = 10.dp))
             ImageCarouselRow(
@@ -100,7 +140,17 @@ fun FeaturedContent(modifier: Modifier = Modifier) {
                     painterResource(id = R.drawable.output_49)
                 ),
                 backgroundPainter = painterResource(id = R.drawable.fantasy),
-                startDelay = 500
+                startDelay = 500,
+                onClick = {
+                    sharedViewModel.isFromHeader = true
+                    homeViewModel.selectCategoryHeader("Fantasy art")
+                    sharedViewModel.setCurrentItem(itemsHader.get(3))
+                    navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) {
+                        popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                    }
+                    // Handle click for book art carousel
+                    println("Book art carousel clicked")
+                }
             )
             Spacer(modifier = Modifier.padding(start = 10.dp))
             ImageCarouselRow(
@@ -117,7 +167,15 @@ fun FeaturedContent(modifier: Modifier = Modifier) {
                     painterResource(id = R.drawable.output_29)
                 ),
                 backgroundPainter = painterResource(id = R.drawable.disneyart),
-                startDelay = 50
+                startDelay = 50,
+                onClick = {
+                    sharedViewModel.isFromHeader = true
+                    homeViewModel.selectCategoryHeader("Disney Character")
+                    sharedViewModel.setCurrentItem(itemsHader.get(4))
+                    navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) {
+                        popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                    }
+                }
             )
             Spacer(modifier = Modifier.padding(start = 10.dp))
             ImageCarouselRow(
@@ -134,7 +192,15 @@ fun FeaturedContent(modifier: Modifier = Modifier) {
                     painterResource(id = R.drawable.output_59)
                 ),
                 backgroundPainter = painterResource(id = R.drawable.neonpunk),
-                startDelay = 1500
+                startDelay = 1500,
+                onClick = {
+                    sharedViewModel.isFromHeader = true
+                    homeViewModel.selectCategoryHeader("Neonpunk")
+                    sharedViewModel.setCurrentItem(itemsHader.get(5))
+                    navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) {
+                        popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                    }
+                }
             )
             Spacer(modifier = Modifier.padding(start = 10.dp))
             ImageCarouselRow(
@@ -151,7 +217,15 @@ fun FeaturedContent(modifier: Modifier = Modifier) {
                     painterResource(id = R.drawable.output_19)
                 ),
                 backgroundPainter = painterResource(id = R.drawable.lineart),
-                startDelay = 100
+                startDelay = 100,
+                onClick = {
+                    sharedViewModel.isFromHeader = true
+                    homeViewModel.selectCategoryHeader("Line Art")
+                    sharedViewModel.setCurrentItem(itemsHader.get(6))
+                    navController.navigate(NavigationRoutes.TRANSPARENTDIALOG) {
+                        popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                    }
+                }
             )
 
         }
@@ -163,7 +237,8 @@ fun ImageCarouselRow(
     imageList: List<Painter>,
     backgroundPainter: Painter,
     durationMillis: Int = 2000,
-    startDelay: Long = 0 // Add start delay as a parameter
+    startDelay: Long = 0, // Add start delay as a parameter
+    onClick: () -> Unit
 ) {
     var currentImageIndex by remember { mutableStateOf(0) }
 
@@ -178,7 +253,12 @@ fun ImageCarouselRow(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Transparent),
+            .background(Color.Transparent)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple(bounded = true),
+                onClick = onClick
+            ),
         contentAlignment = Alignment.Center
     ) {
         // Foreground animated image

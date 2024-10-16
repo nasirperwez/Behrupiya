@@ -1,18 +1,13 @@
 package com.eramlab.behrupiya.presentation.ui.screens.homescreen
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.eramlab.behrupiya.R
 import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.viewmodel.HomeViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.FeaturedContent
@@ -26,22 +21,28 @@ fun HomeScreen(
     navController: NavController,
     homeViewModel: HomeViewModel) {
 
+    //Data container for footer
     val categories by homeViewModel.categories.collectAsState()
     val selectedCategory by homeViewModel.selectedCategory.collectAsState()
     val items by homeViewModel.items.collectAsState()
     val isLoading by homeViewModel.isLoading.collectAsState()
 
+    // Data Container for header
+
+    val categoriesHeaderr by homeViewModel.categoriesHeader.collectAsState()
+    val selectedCategoryHeader by homeViewModel.selectedCategoryHeader.collectAsState()
+    val itemsHeader by homeViewModel.itemsHeader.collectAsState()
+
+
 
     LaunchedEffect(Unit) {
-        homeViewModel.fetchData()
+        homeViewModel.fetchFooterData()
     }
-//    Image(
-//        painter = painterResource(id = R.drawable.behrupiya_dashboard_1),
-//        contentDescription = "Logo",
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .graphicsLayer(alpha = 0.30f)
-//    )
+
+    LaunchedEffect(Unit) {
+        homeViewModel.fetchHeaderData()
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -56,7 +57,11 @@ fun HomeScreen(
                 .padding(top = 10.dp, start = 20.dp, end = 20.dp)
         )
         FeaturedContent(
-            modifier = Modifier
+            sharedViewModel,
+            navController,
+            homeViewModel,
+            itemsHeader,
+             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .weight(.3f)

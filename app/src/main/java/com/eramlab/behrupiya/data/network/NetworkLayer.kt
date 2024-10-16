@@ -47,8 +47,15 @@ class NetworkLayer {
         }
     }
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend fun getPrompt(): PromptsResponse {
+    suspend fun getFooter(): PromptsResponse {
         return  client.get("${AppConstants.BASE_URL_SERVER}/footers") {
+            parameter("encrypted_data", generateEncryptedData())
+        }.body()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun getHeader(): PromptsResponse {
+        return  client.get("${AppConstants.BASE_URL_SERVER}/headers") {
             parameter("encrypted_data", generateEncryptedData())
         }.body()
     }

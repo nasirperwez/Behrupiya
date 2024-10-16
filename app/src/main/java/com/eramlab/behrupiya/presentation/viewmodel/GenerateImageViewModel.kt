@@ -57,9 +57,7 @@ class GenerateImageViewModel() : ViewModel() {
 
 
 
-    fun setCategories(categories: List<String>) {
-        _categories.value = categories
-    }
+
 
     fun setSelectedCategory(category: String) {
         _selectedCategory.value = category
@@ -78,7 +76,9 @@ class GenerateImageViewModel() : ViewModel() {
         _categoryData.value = categoryData
     }
 
-
+    fun setCategories(categories: List<String>) {
+        _categories.value = categories
+    }
     fun setItems(items: List<Item>) {
         _items.value = items
     }
