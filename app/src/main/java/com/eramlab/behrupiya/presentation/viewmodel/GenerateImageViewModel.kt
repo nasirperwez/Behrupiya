@@ -1,9 +1,12 @@
 package com.eramlab.behrupiya.presentation.viewmodel
 
+import android.app.Application
 import android.graphics.Bitmap
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eramlab.behrupiya.data.model.CategoryData
@@ -26,7 +29,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 
-class GenerateImageViewModel() : ViewModel() {
+class GenerateImageViewModel(application: Application) : AndroidViewModel(application) {
 
 
 
@@ -111,6 +114,7 @@ class GenerateImageViewModel() : ViewModel() {
                         if (generatedbitmap != null) {
                             sharedViewModel.setBitmap(generatedbitmap)
                             setGenerating(2)
+                            saveGeneratedImage(generatedbitmap)
                         }
                     }
                 }
@@ -120,8 +124,30 @@ class GenerateImageViewModel() : ViewModel() {
         }
     }
 
+    private fun saveGeneratedImage(bitmap: Bitmap) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
 
 
+                val folder = File(getApplication<Application>().applicationContext.filesDir, "generated_images")
+                if (!folder.exists()) {
+                    folder.mkdir()
+                }
+
+                // Save the bitmap to the custom folder
+                val fileName = "generated_image_${System.currentTimeMillis()}.jpg"
+                val file = File(folder?.absolutePath, fileName)
+                val outputStream = file.outputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                outputStream.close()
+
+
+
+            } catch (e: Exception) {
+                Log.e("ImageSaving", "Error saving generated image", e)
+            }
+        }
+    }
 }
 
 
@@ -143,3 +169,5 @@ fun createTempFileFromBitmap(bitmap: Bitmap): File {
     fos.close()
     return file
 }
+
+

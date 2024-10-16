@@ -18,30 +18,26 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.eramlab.behrupiya.R
+import com.eramlab.behrupiya.presentation.viewmodel.HistoryImageViewModel
+import java.io.File
 
-
-val imageList = listOf(
-    R.drawable.output_30,
-    R.drawable.output_31,
-    R.drawable.output_32,
-    R.drawable.output_33,
-    R.drawable.output_34,
-    R.drawable.output_35,
-    R.drawable.output_36,
-    R.drawable.output_37,
-    R.drawable.output_38,
-    R.drawable.output_39
-)
 
 @Composable
-fun HistoryImage(modifier: Modifier = Modifier) {
+fun HistoryImage(
+    historyImageViewModel: HistoryImageViewModel,
+    modifier: Modifier = Modifier) {
+
+    val imageList by historyImageViewModel.imageFiles.collectAsState()
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -58,15 +54,15 @@ fun HistoryImage(modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            items(imageList) { imageResId ->
-                HistoryCard(imageResId)
+            items(imageList) { imageFile ->
+                HistoryCard(imageFile)
             }
         }
     }
 }
 
 @Composable
-fun HistoryCard(imageResId: Int) {
+fun HistoryCard(imageFile: File) {
     Card(
         modifier = Modifier
             .aspectRatio(0.8f), // Make the card square-shaped
@@ -76,8 +72,8 @@ fun HistoryCard(imageResId: Int) {
 
         }
     ) {
-        Image(
-            painter = painterResource(id = imageResId),
+        AsyncImage(
+            model = imageFile,
             contentDescription = "History Image",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
