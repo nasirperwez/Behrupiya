@@ -30,7 +30,7 @@ fun SaveAndShare(onDismiss: () -> Unit, sharedViewModel: SharedViewModel) {
     ) {
         Box(
             modifier = Modifier
-                .padding(top = 150.dp, start = 20.dp, end = 20.dp)
+                .padding(top = 130.dp)
                 .clip(
                     RoundedCornerShape(
                         topEnd = 30.dp,

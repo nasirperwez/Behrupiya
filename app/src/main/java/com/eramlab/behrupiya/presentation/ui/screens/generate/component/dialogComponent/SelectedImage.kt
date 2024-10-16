@@ -32,10 +32,10 @@ fun SelectedImage(modifier: Modifier, sharedViewModel: SharedViewModel) {
         modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight(0.50f)
-            .padding(10.dp)
+            .padding(20.dp)
             .clip(
                 RoundedCornerShape(
-                    30.dp
+                    15.dp
                 )
             )
             .background(color = Color(0xF2262527))

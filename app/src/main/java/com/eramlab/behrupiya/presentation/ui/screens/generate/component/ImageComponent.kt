@@ -2,6 +2,11 @@ package com.eramlab.behrupiya.presentation.ui.screens.generate.component
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +36,8 @@ import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.generate.component.GenerateAndSave.SaveAndShareBox
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
 import androidx.compose.runtime.*
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -90,7 +97,6 @@ fun LoadingWrapper(
         "You can always request an AI filter that we don't"
     )
 
-
 //    LaunchedEffect(isLoading) {
 //        if (isLoading == 1) {
 //            delay(30000L) // 30 seconds delay
@@ -106,13 +112,7 @@ fun LoadingWrapper(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 if (showProgress) {
-                    LinearProgressIndicator(
-                        color = Color.Blue,
-                        modifier = Modifier
-                            .padding(start = 20.dp, end = 20.dp)
-                            .align(Alignment.CenterHorizontally)
-                            .fillMaxWidth()
-                    )
+                    EnhancedLinearProgressIndicator()
                     Spacer(modifier = modifier.height(16.dp))
                 }
                 Text(
@@ -160,5 +160,43 @@ fun LoadingWrapper(
 
             }
         }
+    }
+}
+
+@Composable
+fun EnhancedLinearProgressIndicator() {
+    var progress by remember { mutableStateOf(0f) }
+    var pulseScale by remember { mutableStateOf(1f) }
+
+    val animatedProgress by animateFloatAsState(
+        targetValue = progress,
+        animationSpec = tween(durationMillis = 1000) // Smooth animation
+    )
+    val animatedScale by animateFloatAsState(
+        targetValue = pulseScale,
+        animationSpec = infiniteRepeatable(
+            animation = tween(800, easing = LinearEasing), // Repeating pulse animation
+            repeatMode = RepeatMode.Reverse
+        )
+    )
+    LaunchedEffect(Unit) {
+        while (true) {
+            progress = if (progress >= 1f) 0f else progress + 0.1f
+            pulseScale = if (pulseScale == 1f) 1.2f else 1f // Alternate pulse scale
+            delay(2000) // Update progress every second
+        }
+    }
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .scale(animatedScale), // Applying the pulse effect here
+        contentAlignment = Alignment.Center
+    ) {
+        LinearProgressIndicator(
+            progress = animatedProgress,
+            color = Color(0xFF0357C0),
+            modifier = Modifier
+                .fillMaxWidth()
+        )
     }
 }
