@@ -8,17 +8,25 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.eramlab.behrupiya.presentation.ui.screens.History.Compnent.HistoryImage
+import androidx.navigation.NavHostController
+import com.eramlab.behrupiya.presentation.SharedViewModel
 import com.eramlab.behrupiya.presentation.ui.screens.History.Compnent.HistoryTopBar
+import com.eramlab.behrupiya.presentation.ui.screens.History.Component.HistoryImage
+import com.eramlab.behrupiya.presentation.viewmodel.HomeViewModel
 
 @Composable
-fun HistoryScreen() {
+fun HistoryScreen(
+    homeViewModel: HomeViewModel,
+    sharedViewModel: SharedViewModel,
+    navController: NavHostController
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.Black)
+            .background(color = Color(0xF2242323))
     ) {
         HistoryTopBar(
+            navController,
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()

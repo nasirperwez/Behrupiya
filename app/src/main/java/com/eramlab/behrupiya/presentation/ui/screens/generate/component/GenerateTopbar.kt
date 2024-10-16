@@ -54,6 +54,7 @@ fun GenerateTopbar(
                     .weight(0.7f)
             )
             imageIcon(
+                navController,
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
