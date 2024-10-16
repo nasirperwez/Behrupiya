@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.eramlab.behrupiya.presentation.ui.screens.History.Compnent.HistoryImage
 import com.eramlab.behrupiya.presentation.ui.screens.History.Compnent.HistoryTopBar
 
 @Composable
@@ -22,6 +23,12 @@ fun HistoryScreen() {
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .weight(0.1f)
+        )
+        HistoryImage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .weight(0.9f)
         )
     }
 }
