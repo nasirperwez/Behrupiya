@@ -39,7 +39,11 @@ fun BottomTaskbar(
         ) {
             TaskbarIcon(
                 R.drawable.home_footer_icn_s,
-                onClick = { /* Handle home click */ }
+                onClick = {
+                    navController.navigate(NavigationRoutes.HOME) {
+                        popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                    }
+                }
             )
             TaskbarIcon(
                 R.drawable.camera_icn,
@@ -53,11 +57,12 @@ fun BottomTaskbar(
 
             TaskbarIcon(
                 R.drawable.setting_footer_icn_s,
-                onClick = { settingDialog = true }
+                onClick = {
+                    navController.navigate(NavigationRoutes.SETTING) {
+                        popUpTo(NavigationRoutes.HOME) { inclusive = true }
+                    }
+                }
             )
-            if (settingDialog) {
-                SettingsScreen(onMDismiss = { settingDialog = false })
-            }
 
         }
     }
