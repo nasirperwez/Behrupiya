@@ -28,6 +28,7 @@ import com.eramlab.behrupiya.presentation.ui.screens.History.HistoryScreen
 import com.eramlab.behrupiya.presentation.ui.screens.onboarding.OnboardingScreen2
 import com.eramlab.behrupiya.presentation.ui.screens.onboarding.OnboardingScreen3
 import com.eramlab.behrupiya.presentation.ui.screens.transparentDialog.TransparentDialog
+import com.eramlab.behrupiya.presentation.ui.settings.SettingsScreen
 
 import com.eramlab.behrupiya.presentation.ui.splash.SplashScreen
 import com.eramlab.behrupiya.presentation.viewmodel.GenerateImageViewModel
@@ -176,6 +177,10 @@ fun ControlNav()
                     //History screen
                     composable(route = NavigationRoutes.HISTORY) {
                         HistoryScreen(historyImageViewModel = historyImageViewModel ,homeViewModel = homeViewModel,sharedViewModel = sharedViewModel,navController = navController )
+                    }
+                    composable(route = NavigationRoutes.SETTING) {
+                        SettingsScreen(sharedViewModel = sharedViewModel, navController = navController) {
+                        }
                     }
 
                     composable(route = NavigationRoutes.GENERATE_SCREEN) {

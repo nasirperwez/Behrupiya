@@ -1,4 +1,5 @@
 package com.eramlab.behrupiya.presentation.ui.screens.homescreen
+
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
@@ -19,7 +20,8 @@ import com.eramlab.behrupiya.presentation.ui.screens.homescreen.component.TopBar
 fun HomeScreen(
     sharedViewModel: SharedViewModel,
     navController: NavController,
-    homeViewModel: HomeViewModel) {
+    homeViewModel: HomeViewModel
+) {
 
     //Data container for footer
     val categories by homeViewModel.categories.collectAsState()
@@ -61,7 +63,7 @@ fun HomeScreen(
             navController,
             homeViewModel,
             itemsHeader,
-             modifier = Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .weight(.3f)

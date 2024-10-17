@@ -8,6 +8,7 @@ object NavigationRoutes {
     const val ONBOARDING2 = "OnboardingScreen2"
     const val ONBOARDING3 = "OnboardingScreen3"
     const val HISTORY = "HistoryScreen"
+    const val SETTING = "SettingsScreen"
 
 
     // Home and Main Features
