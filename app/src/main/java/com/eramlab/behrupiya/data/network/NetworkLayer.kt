@@ -61,13 +61,13 @@ class NetworkLayer {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend fun generateImagesev(apiKey: String,prompt: String, imagePath: File): ImageResponse {
+    suspend fun generateImagesev(apiKey: String,prompt: String, style :String, imagePath: File): ImageResponse {
         return client.post("${AppConstants.BASE_URL_SERVER}/generate-image/") {
             setBody(MultiPartFormDataContent(formData {
                 append("api_key", apiKey)
                 append("prompt", prompt)
                 append("negative_prompt", "")
-                append("style", "Photographic")
+                append("style", style)
                 append("encrypted_data", generateEncryptedData())
                 append("image", imagePath.readBytes(), Headers.build {
                     append(HttpHeaders.ContentDisposition, "filename=\"image.jpg\"")

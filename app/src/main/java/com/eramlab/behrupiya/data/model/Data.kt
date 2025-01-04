@@ -76,7 +76,7 @@ data class Item(
     val gender: String,
     val output_image: String? = null,
     val effect_id: String,
-    val style: String? =null
+    val style: String? ="Photographic"
 
 )
 

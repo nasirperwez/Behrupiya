@@ -7,7 +7,7 @@ object AppConstants {
 
 
 //    const val BASE_URL = "http://192.168.1.3:8080"
-    const val BASE_URL_SERVER = "http://13.201.3.28"
+    const val BASE_URL_SERVER = "http://13.232.134.52"
 //    const val BASE_URL_SERVER = "http://122.160.116.97:8090"
 //    const val BASE_URL = "http://122.160.116.97:8080"
     const val BASE_URL = "https://behrupiya.s3.ap-south-1.amazonaws.com/"

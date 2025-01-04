@@ -97,12 +97,12 @@ class GenerateImageViewModel(application: Application) : AndroidViewModel(applic
         return _isGenerating.value
     }
       @RequiresApi(Build.VERSION_CODES.O)
-      fun onGenerateImage(bitmap: Bitmap, prompt: String) {
+      fun onGenerateImage(bitmap: Bitmap, prompt: String , style :String) {
         viewModelScope.launch(Dispatchers.IO) {
            try {
                 val imageFile = createTempFileFromBitmap(bitmap)
                 println("Nasir = " + API_KEY)
-                val response = networkLayer.generateImagesev(API_KEY, prompt, imageFile)
+                val response = networkLayer.generateImagesev(API_KEY, prompt, style,imageFile)
                 imageFile.delete()
 
                 if(response.success)

@@ -40,7 +40,6 @@ fun HomeScreen(
     LaunchedEffect(Unit) {
         homeViewModel.fetchFooterData()
     }
-
     LaunchedEffect(Unit) {
         homeViewModel.fetchHeaderData()
     }

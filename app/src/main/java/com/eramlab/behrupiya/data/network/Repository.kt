@@ -10,8 +10,8 @@ class Repository(private val context: Context , private val networkLayer: Networ
     @RequiresApi(Build.VERSION_CODES.O)
     suspend fun registerUser(deviceId: String) = networkLayer.registerUser(context ,deviceId)
     @RequiresApi(Build.VERSION_CODES.O)
-    suspend fun generateImage(apiKey: String,prompt: String, imagePath: File) =
-        networkLayer.generateImagesev(apiKey,  prompt, imagePath)
+    suspend fun generateImage(apiKey: String,prompt: String, style:String, imagePath: File) =
+        networkLayer.generateImagesev(apiKey,  prompt, style ,imagePath)
     @RequiresApi(Build.VERSION_CODES.O)
     suspend fun getPrompts(apiKey: String) = networkLayer.getFooter()
 }

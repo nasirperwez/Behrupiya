@@ -37,10 +37,7 @@ fun GenerateAndSaveBox(
     )
     var text ="Generate"
     if(isRegenerate==2)
-            text = "reGenerate"
-
-
-
+            text = "Re-Generate"
     Box(
         Modifier
             .clip(
@@ -51,8 +48,6 @@ fun GenerateAndSaveBox(
             .background(color = Color(0xC3202027))
             .height(50.dp)
             .fillMaxWidth(0.75f)
-
-
     ){
         Row {
             Box(
@@ -65,18 +60,19 @@ fun GenerateAndSaveBox(
                     .background(blueGradient)
                     .height(50.dp)
                     .fillMaxWidth(0.70f)        
-
                     .clickable { sharedViewModel.bitmap_set?.let {
                         generateImageViewModel.setGenerating(1)
                         val prompt = sharedViewModel.getCurrentItem()?.prompt
+                        val style = sharedViewModel.getCurrentItem()?.style
                         if (prompt != null) {
-                            generateImageViewModel.onGenerateImage(
-                                it, prompt
-                            )
+                            if (style != null) {
+                                generateImageViewModel.onGenerateImage(
+                                    it, prompt ,style
+                                )
+                            }
                         }
                     }
                     }
-
             )
             {
                 Text(
@@ -105,8 +101,6 @@ fun GenerateAndSaveBox(
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
-
-
         }
     }
 }
